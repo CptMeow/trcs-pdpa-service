@@ -127,32 +127,15 @@
     </div>
 
     <div class="row">
-        <section class="content">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="timeline">
-                            @foreach ($activities as $activity)
-                            @php
-                            $_data = json_decode($activity->appeal_activities_data);
-                            @endphp
-                            <div>
-                                <i class="fas fa-comments bg-gray"></i>
-                                <div class="timeline-item col">
-                                    <span class="time"><i class="fas fa-clock"></i> {{ $activity->created_at }}</span>
-                                    <h3 class="timeline-header"><a href="#">{{ Helper::Username($activity->user_id) }}</a> เปลี่ยนสภานะใบคำร้อง</h3>
-                                    <div class="timeline-body">
-                                        <span class="text-red">{{ Helper::AppealStatus($_data->status->old) }}</span> เป็น <span class="text-green">{{ Helper::AppealStatus($_data->status->new) }}</span>
-                                        <span>{{ property_exists ($_data->status, 'comment')?$_data->status->comment:'' }}</span>
-                                    </div>
-                                </div>
-                            </div>
-                            @endforeach
-                        </div>
-                    </div>
+        <div class="row justify-content-center">
+            <div class="col-12">
+                <div class="timeline">
+                    @foreach ($activities as $activity)
+                        <x-timeline-item :activity="$activity"/>
+                    @endforeach
                 </div>
             </div>
-        </section>
+        </div>
     </div>
 </div>
 @endsection

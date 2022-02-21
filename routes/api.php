@@ -3,6 +3,11 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\Api\ChartController;
+
+use App\Models\Appeal;
+use App\Models\User;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -14,6 +19,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
+Route::middleware('auth')->get('/user', function (Request $request) {
     return $request->user();
 });
+    
+
+
+Route::get('/test', function (Request $request) {
+    return $request->user();
+});
+
+Route::middleware('auth:web')->get('/appeal', function (Request $request) {
+    return Appeal::get();
+});
+Route::middleware('auth:web')->get('/chart/appeal/type', [ChartController::class, 'type']);
+Route::middleware('auth:web')->get('/chart/appeal/channel', [ChartController::class, 'channel']);

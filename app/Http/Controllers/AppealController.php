@@ -96,6 +96,14 @@ class AppealController extends Controller
             $appeal->appeal_uuid = $appeal_uuid;
             $appeal->save();
 
+            // create activity
+            $AppealActivity = AppealActivity::create([
+                'appeal_activities_event_name' => 'create_appeal',
+                'appeal_id' => $appeal->appeal_id,
+                'user_id' => Auth::id()
+            ]);
+            $AppealActivity->save();
+
             // insert attachment
             if ($request->hasfile('attachment')) {
                 foreach ($request->file('attachment') as $uploaded_file) {

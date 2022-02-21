@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AppealController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 
@@ -21,9 +22,12 @@ Route::get('/', function () {
     return redirect()->route('home');
 });
 
-Route::get('/home', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('home');
+Route::any('/dashboard', function () {
+    // return view('welcome');
+    return redirect()->route('home');
+});
+
+Route::get('/home', [HomeController::class, 'index'])->middleware(['auth'])->name('home');
 
 require __DIR__.'/auth.php';
 

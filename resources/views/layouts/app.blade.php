@@ -159,17 +159,36 @@
                 </ul>
             </div>
         </nav>
-        <div class="container-fluid">
+        <section class="content-header d-none">
+            <div class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1 class="m-0">Dashboard v3</h1>
+                        </div>
+                        <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item active">Dashboard v3</li>
+                        </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="content">
+            <div class="container-fluid">
             @section('content')
         
             @show
-        </div>
+            </div>
+        </section>
         
         <section class="footer">
             <footer class="main-footer">
     
-                <div class="float-right d-none d-sm-inline">
-                    Anything you want
+                <div class="float-right d-sm-inline d-none text-white">
+                    worapon.p@redcross.or.th
                 </div>
                 <strong>สงวนลิขสิทธิ์ โดย สภากาชาดไทย</strong> | <a class="text-reset fw-bold" href="https://it.redcross.or.th">สำนักงานเทคโนโลยีสารสนเทศและดิจิทัล</a>
             </footer>

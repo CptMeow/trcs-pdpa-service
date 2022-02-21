@@ -17,18 +17,40 @@
                     </div>
                 </div>
             </div>
-                <form id="appreal_form" action="{{route('appeals.update',$appeal->appeal_id)}}" method="post" autocomplete="off" class="needs-validation" enctype="multipart/form-data">
+                <form id="appreal_form" action="{{route('appeals.update',$appeal->appeal_id)}}" method="post" autocomplete="off" class="needs-validation form-horizontal" enctype="multipart/form-data">
                 <div class="card-body bg-light">        
                     @csrf
                     @method('PUT')
-
-                    <div class="col-12 mt-3">
-                        <label for="appeal_status" class="form-label">สถานะใบคำร้อง</label>
-                        {{ Form::select('appeal_status', Helper::AppealStatus(), $appeal->appeal_status_id, ['id' => 'appeal_status', 'placeholder' => 'เลือกสถานะใบคำร้อง']) }}
+                    <div class="form-group row">
+                        <label for="appeal_status" class="col-sm-2 col-form-label">สถานะใบคำร้อง</label>
+                        <div class="col-sm-10">
+                            {{ 
+                                Form::select('appeal_status', 
+                                    Helper::AppealStatus(), 
+                                    $appeal->appeal_status_id, 
+                                    [
+                                        'class' => 'form-control',
+                                        'id' => 'appeal_status', 
+                                        'placeholder' => 'เลือกสถานะใบคำร้อง'
+                                    ]                            
+                                ) 
+                            }}
+                        </div>
                     </div>
-                    <div class="col-12 mt-3">
-                        <label for="activity_comment" class="form-label">คำอธิบาย</label>
-                        {{ Form::textarea('activity_comment', null, ['id' => 'activity_comment', 'class' => 'test', 'rows' => 5]) }}
+                    <div class="form-group row">
+                        <label for="activity_comment" class="col-sm-2 col-form-label">คำอธิบาย</label>
+                        <div class="col-sm-10">
+                            {{ 
+                                Form::textarea('activity_comment', 
+                                    null, 
+                                    [
+                                        'class' => 'form-control', 
+                                        'id' => 'activity_comment', 
+                                        'rows' => 5
+                                    ]
+                                ) 
+                            }}
+                        </div>
                     </div>
                 </div>  
                 <div class="card-footer bg-light">

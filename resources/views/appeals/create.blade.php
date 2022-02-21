@@ -6,7 +6,13 @@
         <div class="col">
             <div class="card shadow bg-body rounded">
                 <div class="card-header text-white bg-danger">
-                    <strong>บันทึกข้อมูลการร้องเรียนการใช้งานข้อมูลส่วนบุคคล</strong>
+                    <div class="row">
+                        <div class="col-6 align-middle"><strong class="align-middle">บันทึกข้อมูลการร้องเรียนการใช้งานข้อมูลส่วนบุคคล</strong></div>
+                        <div class="col-6 text-right">
+                            <a href="{{ route('appeals.index') }}" class="btn btn-danger btn-sm active" title="ย้อนกลับ">
+                                <i class="fas fa-chevron-circle-left"></i></a>
+                        </div>
+                    </div>
                 </div>
                 <form id="appreal_form" action="{{route('appeals.store')}}" method="post" autocomplete="off" class="needs-validation" enctype="multipart/form-data">
                     @csrf

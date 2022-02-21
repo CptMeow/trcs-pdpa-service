@@ -26,4 +26,10 @@ class appeal extends Model
         'user_id'
     ];
 
+    public static function Chart()
+    {
+        # code...
+        
+    }
+
 }

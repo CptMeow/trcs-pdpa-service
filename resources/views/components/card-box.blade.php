@@ -1,4 +1,4 @@
-@props(['type' => null])
+@props(['type'])
 
 @php
 switch ($type) {
@@ -29,4 +29,10 @@ switch ($type) {
 }
 @endphp
 
-<span class="badge {{ $type_class }} text-white">{{ $slot }}</span>
+<div class="info-box">
+    <span class="info-box-icon {{ $type_class }}"><i class="far fa-envelope"></i></span>
+    <div class="info-box-content">
+        <span class="info-box-text">{{ Helper::AppealStatus($type) }}</span>
+        <span class="info-box-number">{{ $slot }}</span>
+    </div>
+</div>
