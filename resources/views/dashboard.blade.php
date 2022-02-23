@@ -3,74 +3,38 @@
 @section('content')
     <div class="row pt-3">
         @foreach (Helper::AppealStatus() as $key => $status)
-        <div class="col">
+        <div class="col-md">
             <x-card-box :type=$key>{{ isset($status_count[$key])?$status_count[$key]:0 }}</x-card-box>
         </div>
         @endforeach
     </div>
     <div class="row">
-        <div class="col-12">
-            <div class="card card-info">
-                <div class="card-header">
-                    <h3 class="card-title">จำนวนใบคำร้องแยกรายวัน</h3>
-                    <div class="card-tools">
-                        <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                        <i class="fas fa-minus"></i>
-                        </button>
-                        <button type="button" class="btn btn-tool" data-card-widget="remove">
-                        <i class="fas fa-times"></i>
-                        </button>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <div class="chart">
+        <section class="col-lg-12 connectedSortable">
+            <x-card title="จำนวนใบคำร้องแยกรายวัน" class="card-danger">
+                <div class="chart">
                     <canvas id="lineChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
-                    </div>
                 </div>
-            </div>
-        </div>
-        <div class="col-6">
-            <div class="card card-info">
-                <div class="card-header">
-                <h3 class="card-title">ประเภทใบคำร้อง</h3>
-                    <div class="card-tools">
-                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                    <i class="fas fa-minus"></i>
-                    </button>
-                    <button type="button" class="btn btn-tool" data-card-widget="remove">
-                    <i class="fas fa-times"></i>
-                    </button>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <canvas id="pieChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
-                </div>
-            </div>
-        </div>
-        <div class="col-6">
-            <div class="card card-info">
-                <div class="card-header">
-                <h3 class="card-title">ช่องทางแจ้งใบคำร้อง</h3>
-                    <div class="card-tools">
-                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                    <i class="fas fa-minus"></i>
-                    </button>
-                    <button type="button" class="btn btn-tool" data-card-widget="remove">
-                    <i class="fas fa-times"></i>
-                    </button>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <canvas id="pieChart2" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
-                </div>
-            </div>
-        </div>
+            </x-card>
+        </section>
+        <section class="col-lg-6 connectedSortable">
+            <x-card title="ประเภทใบคำร้อง" class="card-danger">
+                <canvas id="pieChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+            </x-card>
+        </section>
+        
+        <section class="col-lg-6 connectedSortable">
+            <x-card title="ช่องทางแจ้งใบคำร้อง" class="card-danger">
+                <canvas id="pieChart2" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+            </x-card>
+        </section>
     </div>
 @endsection
 
 @section('jspage')
 <script src="{{ asset('assets/plugins/chart.js/Chart.min.js') }}"></script>
 <script type="text/javascript">
+    $('.connectedSortable').sortable({placeholder:'sort-highlight',connectWith:'.connectedSortable',handle:'.card-header, .nav-tabs',forcePlaceholderSize:true,zIndex:999999})
+    $('.connectedSortable .card-header').css('cursor','move')
     $(function () {
         //-------------
         var channelData        = {
@@ -92,8 +56,6 @@
             ]
         }
         //-------------
-       
-
 
         //-------------
         //- PIE CHART -

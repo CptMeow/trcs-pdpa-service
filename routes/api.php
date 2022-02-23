@@ -37,3 +37,4 @@ Route::middleware('auth:web')->get('/appeal', function (Request $request) {
 });
 Route::middleware('auth:web')->get('/chart/appeal/type', [ChartController::class, 'type']);
 Route::middleware('auth:web')->get('/chart/appeal/channel', [ChartController::class, 'channel']);
+Route::middleware('auth:web')->get('/chart/test', [ChartController::class, 'test']);

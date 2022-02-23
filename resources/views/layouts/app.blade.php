@@ -1,16 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<base href="test">
+	<base href="{{ Request::url(); }}">
 	<meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="author" content="Worapon Pleepattanakorn <worapon.p@redcross.or.th>">
 	<title>{{ $title ?? 'App | ' }} TRCS-PDPA Service</title>
     <link rel="stylesheet" href="{{asset('assets/plugins/fontawesome-free/css/all.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/dists/css/adminlte.min.css?v=3.2.0')}}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Prompt:ital,wght@0,100;0,200;1,100&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{asset('assets/dists/css/style.css?v=3.2.0')}}">
     @section('csspage')
         
     @show
@@ -36,6 +38,7 @@
                     @can('appeal-list')
                     <li class="nav-item"><a href="{{ route('appeals.index') }}" class="nav-link {{ request()->routeIs('appeals.index') ? 'active' : '' }}">ใบคำร้อง</a></li>
                     @endcan
+                    <li class="nav-item"><a href="{{ route('report.sitecheck') }}" class="nav-link ">รายงานตรวจสอบ PDPA</a></li>
                     
                     @hasrole('Admin')
                     <li class="nav-item dropdown">
@@ -142,7 +145,9 @@
                 </a>
                 </li> --}}
                 <li class="nav-item dropdown">
-                    <a id="dropdownSubMenu2" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">{{ Auth::user()->name }}</a>
+                    <a id="dropdownSubMenu2" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">
+                        <span class="image bg-red p-2 rounded">WP</span> 
+                        {{ Auth::user()->name }}</a>
                     <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
@@ -187,8 +192,8 @@
         <section class="footer">
             <footer class="main-footer">
     
-                <div class="float-right d-sm-inline d-none text-white">
-                    worapon.p@redcross.or.th
+                <div class="float-right d-sm-inline">
+                    ฝ่ายนโยบายความมั่นคงความปลอดภัยไซเบอร์และคุ้มครองข้อมูลส่วนบุคคล 
                 </div>
                 <strong>สงวนลิขสิทธิ์ โดย สภากาชาดไทย</strong> | <a class="text-reset fw-bold" href="https://it.redcross.or.th">สำนักงานเทคโนโลยีสารสนเทศและดิจิทัล</a>
             </footer>
@@ -196,6 +201,7 @@
     </div>
 
 <script src="{{asset('assets/plugins/jquery/jquery.min.js')}}"></script>
+<script src="{{asset('assets/plugins/jquery-ui/jquery-ui.min.js')}}"></script>
 <script src="{{asset('assets/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 <script src="{{asset('assets/plugins/moment/moment-with-locales.min.js')}}"></script>
 <script src="{{asset('assets/dists/js/adminlte.min.js?v=3.2.0')}}"></script>

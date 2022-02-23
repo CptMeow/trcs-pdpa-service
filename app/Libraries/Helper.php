@@ -67,11 +67,11 @@ class Helper {
             case 'jpg':
             case 'png':
                 // $output = '<img src="'.Storage::url($attachment->file_path).'" alt="..." height="100px" width="100px" class="img-thumbnail rounded d-block">';
-                $output = '<a href="'.Storage::url($attachment->file_path).'"><i class="fas fa-file-image"></i> '.$attachment->file_upload_name.'</a><br>';
+                $output = '<a href="#" class="pop btn btn-app bg-teal"><i class="fas fa-file-image"></i> Image<img src="'.Storage::url($attachment->file_path).'" class="d-none"></a>';
                 break;
 
             case 'pdf':
-                $output = '<a href="'.Storage::url($attachment->file_path).'"><i class="fas fa-file-pdf"></i> '.$attachment->file_upload_name.'</a><br>';
+                $output = '<a href="'.Storage::url($attachment->file_path).'" class="btn btn-app bg-teal"><i class="fas fa-file-pdf"></i> PDF<span class="d-none">'.$attachment->file_upload_name.'</span></a>';
                 break;
                             
             default:

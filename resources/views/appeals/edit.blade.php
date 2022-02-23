@@ -6,19 +6,19 @@
 <div class="row my-4 align-items-center">
     <div class="col">
         <div class="card shadow bg-body rounded">
-            <div class="card-header text-white bg-danger">
+            <div class="card-header text-white bg-light">
                 <div class="row">
                     <div class="col-6 align-middle"><strong class="align-middle"><i class="fa-solid fa-file-lines"></i> {{ __('แก้ไขสถานะใบคำร้องหมายเลข') }} #{{ $appeal->appeal_uuid }} </strong></div>
                     <div class="col-6 text-right">
-                        <a href="{{ route('appeals.edit',$appeal->appeal_id) }}" class="btn btn-danger btn-sm active">
+                        <a href="{{ route('appeals.edit',$appeal->appeal_id) }}" class="btn btn-danger btn-xs ">
                             <i class="fas fa-cogs"></i></a>
-                        <a href="{{ route('appeals.index') }}" class="btn btn-danger btn-sm active">
+                        <a href="{{ route('appeals.index') }}" class="btn btn-danger btn-xs">
                             <i class="fas fa-chevron-circle-left"></i></a>
                     </div>
                 </div>
             </div>
                 <form id="appreal_form" action="{{route('appeals.update',$appeal->appeal_id)}}" method="post" autocomplete="off" class="needs-validation form-horizontal" enctype="multipart/form-data">
-                <div class="card-body bg-light">        
+                <div class="card-body">        
                     @csrf
                     @method('PUT')
                     <div class="form-group row">

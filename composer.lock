@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1f028ac80eb8d4c589b25c8b4890bf6a",
+    "content-hash": "afa1801b82f7766f61f3fe7246c292a5",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -2130,6 +2130,58 @@
                 "source": "https://github.com/nikic/PHP-Parser/tree/v4.13.2"
             },
             "time": "2021-11-30T19:35:32+00:00"
+        },
+        {
+            "name": "php-junior/laravel-html-encrypt",
+            "version": "v1.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PHPJunior/laravel-html-encrypt.git",
+                "reference": "1b35c94d5d759defc041cb49e00615220041a086"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PHPJunior/laravel-html-encrypt/zipball/1b35c94d5d759defc041cb49e00615220041a086",
+                "reference": "1b35c94d5d759defc041cb49e00615220041a086",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.6.4"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "PhpJunior\\LaravelHtmlEncrypt\\LaravelHtmlEncryptServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "PhpJunior\\LaravelHtmlEncrypt\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nyi Nyi Lwin",
+                    "email": "nyinyilwin1992@hotmail.com"
+                }
+            ],
+            "description": "Simple Html Encrypt for Laravel",
+            "keywords": [
+                "encrypt",
+                "html",
+                "laravel"
+            ],
+            "support": {
+                "issues": "https://github.com/PHPJunior/laravel-html-encrypt/issues",
+                "source": "https://github.com/PHPJunior/laravel-html-encrypt/tree/master"
+            },
+            "time": "2017-10-12T12:12:01+00:00"
         },
         {
             "name": "phpoption/phpoption",

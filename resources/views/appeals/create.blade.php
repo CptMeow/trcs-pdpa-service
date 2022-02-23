@@ -5,18 +5,18 @@
     <div class="row my-4 align-items-center">
         <div class="col">
             <div class="card shadow bg-body rounded">
-                <div class="card-header text-white bg-danger">
+                <div class="card-header text-white bg-light">
                     <div class="row">
                         <div class="col-6 align-middle"><strong class="align-middle">บันทึกข้อมูลการร้องเรียนการใช้งานข้อมูลส่วนบุคคล</strong></div>
                         <div class="col-6 text-right">
-                            <a href="{{ route('appeals.index') }}" class="btn btn-danger btn-sm active" title="ย้อนกลับ">
+                            <a href="{{ route('appeals.index') }}" class="btn btn-danger btn-xs " title="ย้อนกลับ">
                                 <i class="fas fa-chevron-circle-left"></i></a>
                         </div>
                     </div>
                 </div>
                 <form id="appreal_form" action="{{route('appeals.store')}}" method="post" autocomplete="off" class="needs-validation" enctype="multipart/form-data">
                     @csrf
-                    <div class="card-body bg-light">
+                    <div class="card-body">
                         <div class="row">
                             <div class="col-12 mt-3">
                                 <strong>ข้อมูลการร้องเรียน</strong>
@@ -291,7 +291,8 @@
     $(function() {
         $('#appreal_form #datetimepicker1').datetimepicker({
             locale: 'th',
-            format: 'DD-MM-YYYY'
+            format: 'DD-MM-YYYY',
+            allowInputToggle: true
         });
         $( "#appreal_form #appeal_channel" ).change(function() {
     

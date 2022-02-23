@@ -1,3 +1,4 @@
-* {
+a, body, input, label, li, p, span, table, td, th {
 	font-family: 'Prompt', sans-serif;
+	color: #595555;
 }

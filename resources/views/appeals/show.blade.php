@@ -10,20 +10,20 @@
     <div class="row my-4 align-items-center">
         <div class="col">
             <div class="card shadow bg-body rounded">
-                <div class="card-header text-white bg-danger">
+                <div class="card-header text-white bg-light">
                     <div class="row">
                         <div class="col-6 align-middle"><strong class="align-middle"><i class="fa-solid fa-file-lines"></i> รายละเอียดใบคำร้องหมายเลข #{{ $appeal->appeal_uuid }} </strong></div>
                         <div class="col-6 text-right">
-                            <a href="{{ route('appeals.edit',$appeal->appeal_id) }}" class="btn btn-danger btn-sm active">
+                            <a href="{{ route('appeals.edit',$appeal->appeal_id) }}" class="btn btn-danger btn-xs">
                                 <i class="fas fa-cogs"></i></a>
-                            <a href="{{ route('appeals.index') }}" class="btn btn-danger btn-sm active">
+                            <a href="{{ route('appeals.index') }}" class="btn btn-danger btn-xs">
                                 <i class="fas fa-chevron-circle-left"></i></a>
                         </div>
                     </div>
                 </div>
                 <form id="appreal_form" action="{{route('appeals.store')}}" method="post" autocomplete="off" class="needs-validation" enctype="multipart/form-data">
                     @csrf
-                    <div class="card-body bg-light">
+                    <div class="card-body ">
                         <div class="row">
                             <div class="col-12 mt-3">
                                 <strong>ข้อมูลการร้องเรียน</strong>
@@ -126,14 +126,23 @@
         </div>
     </div>
 
-    <div class="row">
-        <div class="row justify-content-center">
-            <div class="col-12">
-                <div class="timeline">
-                    @foreach ($activities as $activity)
-                        <x-timeline-item :activity="$activity"/>
-                    @endforeach
-                </div>
+    <div class="row justify-content-center">
+        <div class="col-10">
+            <div class="timeline">
+                @foreach ($activities as $activity)
+                    <x-timeline-item :activity="$activity"/>
+                @endforeach
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="imagemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">              
+            <div class="modal-body">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <img src="" class="imagepreview" style="width: 100%;" >
             </div>
         </div>
     </div>
@@ -141,5 +150,12 @@
 @endsection
 
 @section('jspage')
-
+<script>
+    $(function() {
+            $('.pop').on('click', function() {
+                $('.imagepreview').attr('src', $(this).find('img').attr('src'));
+                $('#imagemodal').modal('show');   
+            });		
+    });
+</script>
 @endsection

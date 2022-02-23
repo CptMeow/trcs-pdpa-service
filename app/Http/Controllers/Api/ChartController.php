@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Libraries\Helper;
@@ -46,5 +47,10 @@ class ChartController extends Controller
         }
 
         return $array;
+    }
+
+    public function test(Request $request)
+    {
+        return Auth::user();
     }
 }
