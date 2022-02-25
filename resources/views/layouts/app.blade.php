@@ -191,7 +191,6 @@
         
         <section class="footer">
             <footer class="main-footer">
-    
                 <div class="float-right d-sm-inline">
                     ฝ่ายนโยบายความมั่นคงความปลอดภัยไซเบอร์และคุ้มครองข้อมูลส่วนบุคคล 
                 </div>
