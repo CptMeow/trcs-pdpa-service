@@ -11,7 +11,8 @@ class PDPASiteCheckController extends Controller
     public function ReportSiteCheck(Request $request)
     {
         # code...
-        if(!empty($request->input('site'))) {
+        if(!empty($request->input('site'))) 
+        {
             //$input = rtrim(str_replace('http://', '', str_replace('https://', '', $request->input('site'))), '/ ');
             $input = rtrim($request->input('site'), '/ ');
             $sites = DB::table('v_pdpa_site_check_result')
@@ -21,7 +22,8 @@ class PDPASiteCheckController extends Controller
             ->OrderBy('domain')
             ->get();
         }
-        else {
+        else 
+        {
             $sites = DB::table('v_pdpa_site_check_result')
             ->select('*')
             ->OrderBy('depart_name')
@@ -29,6 +31,8 @@ class PDPASiteCheckController extends Controller
             ->get();
         }
 
-        return view('reports.sitecheck', compact(['sites']));
+        $title = 'รายงานตรวจสอบ PDPA';
+
+        return view('reports.sitecheck', compact(['sites', 'title']));
     }
 }

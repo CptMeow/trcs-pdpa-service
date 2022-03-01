@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="author" content="Worapon Pleepattanakorn <worapon.p@redcross.or.th>">
-	<title>{{ $title ?? 'App | ' }} TRCS-PDPA Service</title>
+	<title>{{ $title ?? 'App | ' }} {{ isset($title) ? ' | ':'' }} TRCS-PDPA Service</title>
     <link rel="stylesheet" href="{{asset('assets/plugins/fontawesome-free/css/all.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/dists/css/adminlte.min.css?v=3.2.0')}}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
