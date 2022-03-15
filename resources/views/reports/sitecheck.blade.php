@@ -33,9 +33,14 @@
                 <tr>
                     <td>{{ $site->depart_name }}</td>
                     <td>{{ $site->website_name }}</td>
-                    <td>{{ $site->domain }}</td>
+                    <td>{{ $site->domain }}<a href="http://{{$site->domain}}" class="btn btn-xs" target="_blank"><i class="fas fa-external-link-alt text-gray"></i></a></td>
                     <td class="text-center">{!! ($site->flag=='PASS')?'<i class="fas fa-check-circle text-success"></i>':'<i class="fas fa-times-circle text-danger"></i>' !!}</td>
-                    <td class="text-center {{ ($site->flag=='PASS')?'text-success':'text-danger' }}">{!! $site->CID_CHECK?'<i class="fas fa-check-circle" data-toggle="tooltip" data-placement="top" title="พบ '.$site->CID_CHECK.' จุด "></i>':'' !!}</td>
+                    <td class="text-center {{ ($site->flag=='PASS')?'text-success':'text-danger' }}">{!! $site->CID_CHECK?'<i class="fas fa-check-circle" data-toggle="tooltip" data-placement="top" title="พบ '.$site->CID_CHECK.' จุด "></i>':'' !!} 
+                    {{-- @isset($site->CID_CHECK_ITEM)
+                        @foreach (json_decode($site->CID_CHECK_ITEM) as $item)
+                            {{ $item->url }}
+                        @endforeach</td>
+                    @endisset --}}
                     <td class="text-center {{ ($site->flag=='PASS')?'text-success':'text-danger' }}">{!! $site->NAME_CHECK?'<i class="fas fa-check-circle" data-toggle="tooltip" data-placement="top" title="พบ '.$site->NAME_CHECK.' จุด "></i>':'' !!}</td>
                     <td class="text-center {{ ($site->flag=='PASS')?'text-success':'text-danger' }}">{!! $site->DOB_CHECK?'<i class="fas fa-check-circle" data-toggle="tooltip" data-placement="top" title="พบ '.$site->DOB_CHECK.' จุด "></i>':'' !!}</td>
                     <td class="text-center {{ ($site->flag=='PASS')?'text-success':'text-danger' }}">{!! $site->GENDER_CHECK?'<i class="fas fa-check-circle" data-toggle="tooltip" data-placement="top" title="พบ '.$site->GENDER_CHECK.' จุด "></i>':'' !!}</td>

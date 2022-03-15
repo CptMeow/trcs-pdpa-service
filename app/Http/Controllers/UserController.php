@@ -2,13 +2,14 @@
     
 namespace App\Http\Controllers;
     
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\User;
-use Spatie\Permission\Models\Role;
 use DB;
 use Hash;
+use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Auth;
+use Spatie\Permission\Models\Role;
     
 class UserController extends Controller
 {
@@ -44,7 +45,9 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required',
+            // 'name' => 'required',
+            'firstname' => 'required',
+            'lastname' => 'required',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|same:confirm-password',
             'roles' => 'required'
@@ -96,12 +99,24 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request, [
-            'name' => 'required',
-            'email' => 'required|email|unique:users,email,'.$id,
-            'password' => 'same:confirm-password',
-            'roles' => 'required'
-        ]);
+
+        if(Auth::user()->hasRole('Admin')){
+            $this->validate($request, [
+                // 'name' => 'required',
+                'firstname' => 'required',
+                'lastname' => 'required',
+                'email' => 'required|email|unique:users,email,'.$id,
+                'password' => 'same:confirm-password',
+                'roles' => 'required'
+            ]);
+        }
+        else{
+            $this->validate($request, [
+                'firstname' => 'required',
+                'lastname' => 'required',
+                'password' => 'same:confirm-password',
+            ]);
+        }
     
         $input = $request->all();
         if(!empty($input['password'])){ 

@@ -181,6 +181,13 @@ class Helper {
         return $email ?? "-";
     }
 
+    public static function NameLogo($user)
+    {
+        $first = $user->firstname?substr($user->firstname,0,1):'';
+        $last = $user->lastname?substr($user->lastname,0,1):'';
+        return strtoupper($first.$last);
+    }
+
     public static function Username($user_id)
     {
         $user = User::find($user_id)->first();

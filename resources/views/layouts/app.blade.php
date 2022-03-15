@@ -146,9 +146,14 @@
                 </li> --}}
                 <li class="nav-item dropdown">
                     <a id="dropdownSubMenu2" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">
-                        <span class="image bg-red p-2 rounded">WP</span> 
-                        {{ Auth::user()->name }}</a>
-                    <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
+                        <span class="image bg-red p-2 rounded">{{ Helper::NameLogo(Auth::user())}}</span> 
+                        {{ Auth::user()->firstname }}</a>
+                    <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">        
+                        <li>
+                            <a class="dropdown-item" href="{{ route('users.edit',Auth::id()) }}">
+                                {{ __('แก้ไขข้อมูลส่วนตัว') }}
+                            </a>
+                        </li>
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
                             <li>
