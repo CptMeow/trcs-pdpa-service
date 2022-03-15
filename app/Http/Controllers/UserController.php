@@ -90,7 +90,12 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        $user = User::find($id);
+        if(Auth::user()->hasRole('Admin')){
+            $user = User::find($id);
+        }
+        else{
+            $user = User::find(Auth::user()->id);
+        }
         $roles = Role::pluck('name','name')->all();
         $userRole = $user->roles->pluck('name','name')->all();
     
