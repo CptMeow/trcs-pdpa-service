@@ -22,15 +22,7 @@
     @section('content')
         
     @show
-    <script src="{{ asset('assets/plugins/jquery/jquery.min.js') }}"></script>
-
-    <script src="{{ asset('assets/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-
-    <script src="{{ asset('assets/dists/js/adminlte.min.js?v=3.2.0') }}"></script>
-    @section('jspage')
-        
-    @show
-    <div class="">
+    <div>
         <section class="footer">
             <footer class="main-footer fixed-bottom">
                 <div class="float-right d-sm-inline">
@@ -40,6 +32,14 @@
             </footer>
         </section>
     </div>
+    <script src="{{ asset('assets/plugins/jquery/jquery.min.js') }}"></script>
+
+    <script src="{{ asset('assets/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+
+    <script src="{{ asset('assets/dists/js/adminlte.min.js?v=3.2.0') }}"></script>
+    @section('jspage')
+        
+    @show
 </body>
 
 </html>

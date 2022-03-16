@@ -1,4 +1,4 @@
-@extends('layouts.guest')
+@extends('layouts.report')
 
 @section('content')
 <div class="container-fluid">
