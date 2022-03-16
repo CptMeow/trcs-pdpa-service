@@ -24,7 +24,7 @@
                     </div>
                 </div>
                 <div class="input-group mb-3">
-                    <input type="password" name="password" id="password" class="form-control" required autocomplete="current-password">
+                    <input type="password" name="password" id="password" class="form-control" placeholder="Password" required autocomplete="current-password">
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-lock"></span>

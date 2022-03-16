@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="{{asset('assets/dists/css/style.css?v=3.2.0')}}">
 </head>
 
-<body class="hold-transition login-page">
+<body class="hold-transition login-page sidebar-collapse ">
     @section('content')
         
     @show
@@ -30,6 +30,16 @@
     @section('jspage')
         
     @show
+    <div class="">
+        <section class="footer">
+            <footer class="main-footer fixed-bottom">
+                <div class="float-right d-sm-inline">
+                    ฝ่ายนโยบายความมั่นคงความปลอดภัยไซเบอร์และคุ้มครองข้อมูลส่วนบุคคล 
+                </div>
+                <strong>สงวนลิขสิทธิ์ โดย สภากาชาดไทย</strong> | <a class="text-reset fw-bold" href="https://it.redcross.or.th">สำนักงานเทคโนโลยีสารสนเทศและดิจิทัล</a>
+            </footer>
+        </section>
+    </div>
 </body>
 
 </html>
