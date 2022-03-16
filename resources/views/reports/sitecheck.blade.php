@@ -54,7 +54,7 @@
                 @endforeach
             </tbody>
         </table>
-        <div>
+        <div class="pl-3">
             ข้อมูล ณ วันที่ {{ $site->dataset_date }}
         </div>
     </div>

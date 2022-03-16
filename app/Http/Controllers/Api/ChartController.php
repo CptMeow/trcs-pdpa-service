@@ -21,11 +21,14 @@ class ChartController extends Controller
         ->get()
         ->toArray();
 
-        foreach($appeals as $appeal) {
-            $array[] = [
-                'label' => Helper::AppealChannel($appeal['label']),
-                'total' => $appeal['total']
-            ];
+		$array = [];
+        if($appeals) {
+            foreach($appeals as $appeal) {
+                $array[] = [
+                    'label' => Helper::AppealChannel($appeal['label']),
+                    'total' => $appeal['total']
+                ];
+            }
         }
 
         return $array;
@@ -39,11 +42,14 @@ class ChartController extends Controller
         ->get()
         ->toArray();
 
-        foreach($appeals as $appeal) {
-            $array[] = [
-                'label' => Helper::AppealType($appeal['label']),
-                'total' => $appeal['total']
-            ];
+		$array = [];
+        if($appeals) {
+            foreach($appeals as $appeal) {
+                $array[] = [
+                    'label' => Helper::AppealChannel($appeal['label']),
+                    'total' => $appeal['total']
+                ];
+            }
         }
 
         return $array;
