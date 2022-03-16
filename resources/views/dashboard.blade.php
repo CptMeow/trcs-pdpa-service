@@ -71,7 +71,7 @@
             new Chart(lineChartCanvas, {
                 type: 'line',
                 data: requestDateData
-            })
+            });
         });
 
         $.ajax({
@@ -108,7 +108,7 @@
             new Chart(pieChartCanvas, {
                 type: 'pie',
                 data: typeData
-            })
+            });
         });
         
         $.ajax({
@@ -145,76 +145,8 @@
             new Chart(pieChartCanvas2, {
                 type: 'pie',
                 data: channelData
-            })
+            });
         });    
-
-        // /*
-        // //-------------
-        // //- PIE CHART -
-        // //-------------
-        // // Get context with jQuery - using jQuery's .get() method.
-        // */
-        // var pieChartCanvas = $('#pieChart').get(0).getContext('2d');
-        // var pieChartCanvas2 = $('#pieChart2').get(0).getContext('2d');
-        // var pieOptions     = {
-        //     maintainAspectRatio : false,
-        //     responsive : true,
-        // };
-        // /*
-        // // Create pie or douhnut chart
-        // // You can switch between pie and douhnut using the method below.*/
-
-        // $.ajax({
-        //     url: '{{ url('api/chart/appeal/type') }}',
-        //     dataType: 'json',
-        //     }).done(function(results) {
-        //     /*get values that only needed*/
-        //         typeData.labels = results.map(x=>x.label);
-        //         typeData.datasets[0].data = results.map(x=>x.total);
-        //         new Chart(pieChartCanvas, {
-        //             type: 'pie',
-        //             data: typeData,
-        //             options: pieOptions
-        //         })
-        //     });
-
-        // $.ajax({
-        //     url: '{{ url('api/chart/appeal/channel') }}',
-        //     dataType: 'json',
-        //     }).done(function(results) {
-        //     /*get values that only needed*/
-        //         channelData.labels = results.map(x=>x.label);
-        //         channelData.datasets[0].data = results.map(x=>x.total);
-        //         new Chart(pieChartCanvas2, {
-        //             type: 'pie',
-        //             data: channelData,
-        //             options: pieOptions
-        //         })
-        //     });
-        // /*
-        // //-------------
-        // //- LINE CHART -
-        // //--------------
-        // */
-        // var requestDateData        = {
-        //     labels: [],
-        //     datasets: [
-        //         {
-        //             data: [12,4,3,4,5,5,1],
-        //             backgroundColor : ['#f56954', '#00a65a', '#f39c12', '#00c0ef', '#3c8dbc', '#d2d6de'],
-        //         }
-        //     ]
-        // };
-        
-        // var lineChartCanvas = $('#lineChart').get(0).getContext('2d');    
-        // // var lineChartCanvas = new Chart(lineChartCanvas, {
-        // //     type: 'line',
-        // //     data: [20, 10],
-        // //     options: [],
-        // // });
-        
-        
-
     });
 </script>
 @endsection
