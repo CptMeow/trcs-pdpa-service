@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 use App\Http\Controllers\Controller;
 use App\Libraries\Helper;
@@ -12,6 +13,28 @@ use App\Models\User;
 
 class ChartController extends Controller
 {
+    //
+    public function requestDate(Request $request)
+    {
+        $appeals = Appeal::groupBy(DB::raw('date(appeal_request_date)'))
+        ->selectRaw('count(appeal_request_date) as total, date(appeal_request_date) as label')
+        ->OrderBy(DB::raw('date(appeal_request_date)'),'asc')
+        ->get()
+        ->toArray();
+
+		$array = [];
+        if($appeals) {
+            foreach($appeals as $appeal) {
+                $array[] = [
+                    'label' => $appeal['label'],
+                    'total' => $appeal['total']
+                ];
+            }
+        }
+
+        return $array;
+    }
+
     //
     public function channel(Request $request)
     {
@@ -46,7 +69,7 @@ class ChartController extends Controller
         if($appeals) {
             foreach($appeals as $appeal) {
                 $array[] = [
-                    'label' => Helper::AppealChannel($appeal['label']),
+                    'label' => Helper::AppealType($appeal['label']),
                     'total' => $appeal['total']
                 ];
             }

@@ -31,138 +31,189 @@
 @endsection
 
 @section('jspage')
-<script src="{{ asset('assets/plugins/chart.js/Chart.min.js') }}"></script>
+<script src="{{ asset('assets/plugins/chart.js/chart.min.js') }}"></script>
 <script type="text/javascript">
     $(function () {
         $('.connectedSortable').sortable({placeholder:'sort-highlight',connectWith:'.connectedSortable',handle:'.card-header, .nav-tabs',forcePlaceholderSize:true,zIndex:999999});
         $('.connectedSortable .card-header').css('cursor','move');
 
-        var channelData        = {
-            labels: [],
-            datasets: [
-                {
-                    data: [12,4,3,4,5,5,1],
-                    backgroundColor : ['#f56954', '#00a65a', '#f39c12', '#00c0ef', '#3c8dbc', '#d2d6de'],
-                }
-            ]
-        };
-        var typeData        = {
-            labels: [],
-            datasets: [
-                {
-                    data: [12,4,3,4,5,5,1],
-                    backgroundColor : ['#f56954', '#00a65a', '#f39c12', '#00c0ef', '#3c8dbc', '#d2d6de'],
-                }
-            ]
-        };
-
-        /*
-        //-------------
-        //- PIE CHART -
-        //-------------
-        // Get context with jQuery - using jQuery's .get() method.
-        */
-        var pieChartCanvas = $('#pieChart').get(0).getContext('2d');
-        var pieChartCanvas2 = $('#pieChart2').get(0).getContext('2d');
-        var pieOptions     = {
-            maintainAspectRatio : false,
-            responsive : true,
-        };
-        /*
-        // Create pie or douhnut chart
-        // You can switch between pie and douhnut using the method below.*/
+        $.ajax({
+        url: '{{ url('api/chart/appeal/requestdate') }}',
+        dataType: 'json',
+        }).done(function(results) {
+            var lineChartCanvas = $('#lineChart').get(0).getContext('2d');
+            var requestDateData = {
+                labels: [],
+                datasets: [{
+                    label: 'จำนวนใบคำร้อง',
+                    data: [12, 19, 3, 5, 2, 3],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            };
+            requestDateData.labels = results.map(x=>x.label);
+            requestDateData.datasets[0].data = results.map(x=>x.total);
+            new Chart(lineChartCanvas, {
+                type: 'line',
+                data: requestDateData
+            })
+        });
 
         $.ajax({
-            url: '{{ url('api/chart/appeal/type') }}',
-            dataType: 'json',
-            }).done(function(results) {
-            /*get values that only needed*/
-                typeData.labels = results.map(x=>x.label);
-                typeData.datasets[0].data = results.map(x=>x.total);
-                new Chart(pieChartCanvas, {
-                    type: 'pie',
-                    data: typeData,
-                    options: pieOptions
-                })
-            });
-
-            $.ajax({
-            url: '{{ url('api/chart/appeal/channel') }}',
-            dataType: 'json',
-            }).done(function(results) {
-            /*get values that only needed*/
-                channelData.labels = results.map(x=>x.label);
-                channelData.datasets[0].data = results.map(x=>x.total);
-                new Chart(pieChartCanvas2, {
-                    type: 'pie',
-                    data: channelData,
-                    options: pieOptions
-                })
-            });
-        /*
-        //-------------
-        //- LINE CHART -
-        //--------------
-        */
-        var areaChartData = {
-            labels  : ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-            datasets: [
-                {
-                label               : 'Digital Goods',
-                backgroundColor     : 'rgba(60,141,188,0.9)',
-                borderColor         : 'rgba(60,141,188,0.8)',
-                pointRadius          : false,
-                pointColor          : '#3b8bba',
-                pointStrokeColor    : 'rgba(60,141,188,1)',
-                pointHighlightFill  : '#fff',
-                pointHighlightStroke: 'rgba(60,141,188,1)',
-                data                : [28, 48, 40, 19, 86, 27, 90]
-                },
-                {
-                label               : 'Electronics',
-                backgroundColor     : 'rgba(210, 214, 222, 1)',
-                borderColor         : 'rgba(210, 214, 222, 1)',
-                pointRadius         : false,
-                pointColor          : 'rgba(210, 214, 222, 1)',
-                pointStrokeColor    : '#c1c7d1',
-                pointHighlightFill  : '#fff',
-                pointHighlightStroke: 'rgba(220,220,220,1)',
-                data                : [65, 59, 80, 81, 56, 55, 40]
-                },
-            ]
-        };
-        var areaChartOptions = {
-            maintainAspectRatio : false,
-            responsive : true,
-            legend: {
-                display: false
-            },
-            scales: {
-                xAxes: [{
-                gridLines : {
-                    display : false,
-                }
-                }],
-                yAxes: [{
-                gridLines : {
-                    display : false,
-                }
+        url: '{{ url('api/chart/appeal/type') }}',
+        dataType: 'json',
+        }).done(function(results) {
+            var pieChartCanvas = $('#pieChart').get(0).getContext('2d');
+            var typeData = {
+                labels: [],
+                datasets: [{
+                    label: '',
+                    data: [12, 19, 3, 5, 2, 3],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
                 }]
-            }
-        };
-        var lineChartCanvas = $('#lineChart').get(0).getContext('2d');
-        var lineChartOptions = $.extend(true, {}, areaChartOptions);
-        var lineChartData = $.extend(true, {}, areaChartData);
-        
-        lineChartData.datasets[0].fill = false;
-        lineChartData.datasets[1].fill = false;
-        lineChartOptions.datasetFill = false;
-
-        var lineChart = new Chart(lineChartCanvas, {
-            type: 'line',
-            data: lineChartData,
-            options: lineChartOptions
+            };
+            typeData.labels = results.map(x=>x.label);
+            typeData.datasets[0].data = results.map(x=>x.total);
+            new Chart(pieChartCanvas, {
+                type: 'pie',
+                data: typeData
+            })
         });
+        
+        $.ajax({
+        url: '{{ url('api/chart/appeal/channel') }}',
+        dataType: 'json',
+        }).done(function(results) {
+            var pieChartCanvas2 = $('#pieChart2').get(0).getContext('2d');
+            var channelData = {
+                labels: [],
+                datasets: [{
+                    label: '',
+                    data: [12, 19, 3, 5, 2, 3],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            };
+            channelData.labels = results.map(x=>x.label);
+            channelData.datasets[0].data = results.map(x=>x.total);
+            new Chart(pieChartCanvas2, {
+                type: 'pie',
+                data: channelData
+            })
+        });    
+
+        // /*
+        // //-------------
+        // //- PIE CHART -
+        // //-------------
+        // // Get context with jQuery - using jQuery's .get() method.
+        // */
+        // var pieChartCanvas = $('#pieChart').get(0).getContext('2d');
+        // var pieChartCanvas2 = $('#pieChart2').get(0).getContext('2d');
+        // var pieOptions     = {
+        //     maintainAspectRatio : false,
+        //     responsive : true,
+        // };
+        // /*
+        // // Create pie or douhnut chart
+        // // You can switch between pie and douhnut using the method below.*/
+
+        // $.ajax({
+        //     url: '{{ url('api/chart/appeal/type') }}',
+        //     dataType: 'json',
+        //     }).done(function(results) {
+        //     /*get values that only needed*/
+        //         typeData.labels = results.map(x=>x.label);
+        //         typeData.datasets[0].data = results.map(x=>x.total);
+        //         new Chart(pieChartCanvas, {
+        //             type: 'pie',
+        //             data: typeData,
+        //             options: pieOptions
+        //         })
+        //     });
+
+        // $.ajax({
+        //     url: '{{ url('api/chart/appeal/channel') }}',
+        //     dataType: 'json',
+        //     }).done(function(results) {
+        //     /*get values that only needed*/
+        //         channelData.labels = results.map(x=>x.label);
+        //         channelData.datasets[0].data = results.map(x=>x.total);
+        //         new Chart(pieChartCanvas2, {
+        //             type: 'pie',
+        //             data: channelData,
+        //             options: pieOptions
+        //         })
+        //     });
+        // /*
+        // //-------------
+        // //- LINE CHART -
+        // //--------------
+        // */
+        // var requestDateData        = {
+        //     labels: [],
+        //     datasets: [
+        //         {
+        //             data: [12,4,3,4,5,5,1],
+        //             backgroundColor : ['#f56954', '#00a65a', '#f39c12', '#00c0ef', '#3c8dbc', '#d2d6de'],
+        //         }
+        //     ]
+        // };
+        
+        // var lineChartCanvas = $('#lineChart').get(0).getContext('2d');    
+        // // var lineChartCanvas = new Chart(lineChartCanvas, {
+        // //     type: 'line',
+        // //     data: [20, 10],
+        // //     options: [],
+        // // });
+        
+        
 
     });
 </script>
