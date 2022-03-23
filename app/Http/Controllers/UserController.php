@@ -136,6 +136,7 @@ class UserController extends Controller
         }else{
             $input = Arr::except($input,array('password'));    
         }
+        
     
         $user = User::find($id);
         $user->update($input);
@@ -143,10 +144,15 @@ class UserController extends Controller
         if(Auth::user()->hasRole('Admin')){
             DB::table('model_has_roles')->where('model_id',$id)->delete();
             $user->assignRole($request->input('roles'));
+
+            return redirect()->route('users.index')
+                            ->with('success','User updated successfully');
+        }
+        else {
+            return redirect()->route('users.show',$id)
+                            ->with('success','User updated successfully');
         }
     
-        return redirect()->route('users.index')
-                        ->with('success','User updated successfully');
     }
     
     /**
