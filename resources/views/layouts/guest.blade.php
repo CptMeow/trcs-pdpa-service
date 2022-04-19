@@ -26,7 +26,7 @@
         <section class="footer">
             <footer class="main-footer fixed-bottom">
                 <div class="float-right d-sm-inline">
-                    ฝ่ายนโยบายความมั่นคงความปลอดภัยไซเบอร์และคุ้มครองข้อมูลส่วนบุคคล 
+                    ฝ่ายนโยบายความมั่นคงปลอดภัยไซเบอร์และคุ้มครองข้อมูลส่วนบุคคล 
                 </div>
                 <strong>สงวนลิขสิทธิ์ โดย สภากาชาดไทย</strong> | <a class="text-reset fw-bold" href="https://it.redcross.or.th">สำนักงานเทคโนโลยีสารสนเทศและดิจิทัล</a>
             </footer>

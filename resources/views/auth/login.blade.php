@@ -43,5 +43,8 @@
         </div>
 
     </div>
+    <div class="col-12">
+        <a href="https://it.redcross.or.th/pdpaforthairedcross/" target="_blank">เอกสารเกี่ยวกับนโยบายและแนวปฏิบัติในการคุ้มครองข้อมูลส่วนบุคคล</a>
+    </div>
 </div>
 @endsection
