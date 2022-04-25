@@ -45,10 +45,9 @@ class AppealController extends Controller
 
     public function show(Appeal $appeal)
     {
-        $data_subject = DataSubject::find($appeal->data_subject_id)->first();
+        $data_subject = DataSubject::where('data_subject_id',$appeal->data_subject_id)->first();
         $attachments = Attachment::where('appeal_id', $appeal->appeal_id)->get();
         $activities = AppealActivity::where('appeal_id', $appeal->appeal_id)->OrderBy('created_at', 'desc')->get();
-
 
         return view('appeals.show',compact(['appeal', 'data_subject', 'attachments', 'activities']));
     }
@@ -66,23 +65,26 @@ class AppealController extends Controller
         ]);
         
         //create tmp var
-        $_department = $request->input('appeal_department_id')?$request->input('appeal_department_id'):'26';
+        $_department = $request->input('appeal_channel_department_id')?$request->input('appeal_channel_department_id'):'26';
         $_year = date('y',strtotime($request->input('appeal_request_date')));
-        
 
-        $data_subject = DataSubject::firstOrCreate([
-            'data_subject_cid' => $request->input('data_subject_cid'),
-            'data_subject_title' => $request->input('data_subject_title'),
-            'data_subject_firstname' => $request->input('data_subject_firstname'),
-            'data_subject_lastname' => $request->input('data_subject_lastname'),
-            'data_subject_telephone' => $request->input('data_subject_telephone'),
-            'data_subject_email' => $request->input('data_subject_email'),
-            'data_subject_address' => $request->input('data_subject_address'),
-            'data_subject_district' => $request->input('data_subject_district'),
-            'data_subject_amphoe' => $request->input('data_subject_amphoe'),
-            'data_subject_province' => $request->input('data_subject_province'),
-            'data_subject_zipcode' => $request->input('data_subject_zipcode'),
-        ]);
+        $data_subject = DataSubject::updateOrCreate(
+            [
+                'data_subject_cid' => $request->input('data_subject_cid'),
+            ],
+            [
+                'data_subject_title' => $request->input('data_subject_title'),
+                'data_subject_firstname' => $request->input('data_subject_firstname'),
+                'data_subject_lastname' => $request->input('data_subject_lastname'),
+                'data_subject_telephone' => $request->input('data_subject_telephone'),
+                'data_subject_email' => $request->input('data_subject_email'),
+                'data_subject_address' => $request->input('data_subject_address'),
+                'data_subject_district' => $request->input('data_subject_district'),
+                'data_subject_amphoe' => $request->input('data_subject_amphoe'),
+                'data_subject_province' => $request->input('data_subject_province'),
+                'data_subject_zipcode' => $request->input('data_subject_zipcode'),
+            ]
+        );
 
         // fill input appeal
         $appeal->appeal_uuid = '';

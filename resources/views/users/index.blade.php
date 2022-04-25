@@ -15,7 +15,7 @@
 
 
 @if ($message = Session::get('success'))
-<div class="alert alert-success">
+<div class="alert alert-success mt-3">
   <p>{{ $message }}</p>
 </div>
 @endif
@@ -32,7 +32,7 @@
  @foreach ($data as $key => $user)
   <tr>
     <td>{{ ++$i }}</td>
-    <td>{{ $user->firstname }} {{ $user->lastname }}</td>
+    <td>{{ $user->firstname }} {{ $user->lastname }}<br>{{ $user->department}}</td>
     <td>{{ $user->email }}</td>
     <td>
       @if(!empty($user->getRoleNames()))
