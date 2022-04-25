@@ -27,9 +27,15 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-        $data = User::orderBy('id','DESC')->paginate(5);
-        return view('users.index',compact('data'))
-            ->with('i', ($request->input('page', 1) - 1) * 5);
+        if(Auth::user()->hasRole('Admin') || Auth::user()->hasPermissionTo('user-manage')){
+            $data = User::orderBy('id','DESC')->paginate(5);
+            return view('users.index',compact('data'))
+                ->with('i', ($request->input('page', 1) - 1) * 5);
+        }
+        else{
+            return redirect('/');
+        }
+
     }
     
     /**
@@ -39,7 +45,6 @@ class UserController extends Controller
      */
     public function create()
     {
-        $departments = 
         $roles = Role::pluck('name','name')->all();
         return view('users.create',compact('roles','departments'));
     }
@@ -79,7 +84,13 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        $user = User::find($id);
+        if(Auth::user()->hasRole('Admin') || Auth::user()->hasPermissionTo('user-manage')){
+            $user = User::find($id);
+        }
+        else{
+            $user = User::find(Auth::user()->id);
+        }
+        
         return view('users.show',compact('user'));
     }
     

@@ -32,7 +32,7 @@
  @foreach ($data as $key => $user)
   <tr>
     <td>{{ ++$i }}</td>
-    <td>{{ $user->firstname }} {{ $user->lastname }}<br>{{ $user->department}}</td>
+    <td>{{ $user->firstname }} {{ $user->lastname }}<br>{{ empty($user->department)?'':Helper::Department($user->department) }}</td>
     <td>{{ $user->email }}</td>
     <td>
       @if(!empty($user->getRoleNames()))

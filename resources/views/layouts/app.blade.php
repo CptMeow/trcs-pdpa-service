@@ -39,7 +39,9 @@
                     @can('appeal-list')
                     <li class="nav-item"><a href="{{ route('appeals.index') }}" class="nav-link {{ request()->routeIs('appeals.index') ? 'active' : '' }}">ใบคำร้อง</a></li>
                     @endcan
+                    @hasanyrole('Staff|Admin')
                     <li class="nav-item"><a href="{{ route('report.sitecheck') }}" class="nav-link ">รายงานตรวจสอบ PDPA</a></li>
+                    @endhasanyrole
                     
                     @hasrole('Admin')
                     <li class="nav-item dropdown">
@@ -148,8 +150,8 @@
                 <li class="nav-item dropdown">
                     <a id="dropdownSubMenu2" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">
                         <span class="image bg-red p-2 rounded">{{ Helper::NameLogo(Auth::user())}}</span> 
-                        {{ Auth::user()->firstname }}</a>
-                    <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">        
+                        {{ Auth::user()->firstname.' '.Auth::user()->lastname }}</a>
+                    <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">   
                         <li>
                             <a class="dropdown-item" href="{{ route('users.edit',Auth::id()) }}">
                                 {{ __('แก้ไขข้อมูลส่วนตัว') }}

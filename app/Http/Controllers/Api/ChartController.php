@@ -16,11 +16,21 @@ class ChartController extends Controller
     //
     public function requestDate(Request $request)
     {
-        $appeals = Appeal::groupBy(DB::raw('date(appeal_request_date)'))
-        ->selectRaw('count(appeal_request_date) as total, date(appeal_request_date) as label')
-        ->OrderBy(DB::raw('date(appeal_request_date)'),'asc')
-        ->get()
-        ->toArray();
+        if(Auth::user()->hasRole('Admin') || Auth::user()->hasPermissionTo('appeal-manage')){
+            $appeals = Appeal::groupBy(DB::raw('date(appeal_request_date)'))
+                ->selectRaw('count(appeal_request_date) as total, date(appeal_request_date) as label')
+                ->OrderBy(DB::raw('date(appeal_request_date)'),'asc')
+                ->get()
+                ->toArray();
+        }
+        else{
+            $appeals = Appeal::groupBy(DB::raw('date(appeal_request_date)'))
+                ->selectRaw('count(appeal_request_date) as total, date(appeal_request_date) as label')
+                ->where('appeal_department_id',Auth::user()->department)
+                ->OrderBy(DB::raw('date(appeal_request_date)'),'asc')
+                ->get()
+                ->toArray();
+        }    
 
 		$array = [];
         if($appeals) {
@@ -38,11 +48,21 @@ class ChartController extends Controller
     //
     public function channel(Request $request)
     {
-        $appeals = Appeal::groupBy('appeal_channel')
-        ->selectRaw('count(*) as total, appeal_channel as label')
-        ->OrderBy('total','desc')
-        ->get()
-        ->toArray();
+        if(Auth::user()->hasRole('Admin') || Auth::user()->hasPermissionTo('appeal-manage')){
+            $appeals = Appeal::groupBy('appeal_channel')
+                ->selectRaw('count(*) as total, appeal_channel as label')
+                ->OrderBy('total','desc')
+                ->get()
+                ->toArray();
+        }
+        else{
+            $appeals = Appeal::groupBy('appeal_channel')
+                ->selectRaw('count(*) as total, appeal_channel as label')
+                ->where('appeal_department_id',Auth::user()->department)
+                ->OrderBy('total','desc')
+                ->get()
+                ->toArray();
+        }    
 
 		$array = [];
         if($appeals) {
@@ -59,11 +79,21 @@ class ChartController extends Controller
 
     public function type(Request $request)
     {
-        $appeals = Appeal::groupBy('appeal_type')
-        ->selectRaw('count(*) as total, appeal_type as label')
-        ->OrderBy('total','desc')
-        ->get()
-        ->toArray();
+        if(Auth::user()->hasRole('Admin') || Auth::user()->hasPermissionTo('appeal-manage')){
+            $appeals = Appeal::groupBy('appeal_type')
+                ->selectRaw('count(*) as total, appeal_type as label')
+                ->OrderBy('total','desc')
+                ->get()
+                ->toArray();
+        }
+        else{
+            $appeals = Appeal::groupBy('appeal_type')
+                ->selectRaw('count(*) as total, appeal_type as label')
+                ->where('appeal_department_id',Auth::user()->department)
+                ->OrderBy('total','desc')
+                ->get()
+                ->toArray();
+        }    
 
 		$array = [];
         if($appeals) {

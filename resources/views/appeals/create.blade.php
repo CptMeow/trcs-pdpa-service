@@ -96,6 +96,7 @@
                                         <option value="other">ช่องทางอื่นๆ</option>
                                         </select>
                                 </div>
+                                @if (Auth::user()->hasRole('Admin') || Auth::user()->hasPermissionTo('appeal-manage'))
                                 <div class="mt-1">
                                     <select class="form-control d-none" name="appeal_channel_department_id" id="appeal_channel_department_id" 
                                     aria-label="เลือกหน่วยงานที่รับเรื่องร้องเรียน" 
@@ -136,6 +137,7 @@
                                         <option value="27">สำนักกฎหมาย</option>
                                         </select>
                                 </div>
+                                @endif
                                 <div class="">
                                     <input type="text" class="form-control d-none" name="appeal_channel_other" id="appeal_channel_other_reason" placeholder="ระบุช่องทางรับเรื่องร้องเรียน" disabled required>
                                 </div>

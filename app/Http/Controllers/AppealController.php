@@ -23,18 +23,27 @@ class AppealController extends Controller
     //
     public function index(Request $request)
     {
-                
-        $appeal_status = Appeal::groupBy('appeal_status_id')
-        ->selectRaw('count(*) as total, appeal_status_id')
-        ->get()
-        ->toArray();
+        if(Auth::user()->hasRole('Admin') || Auth::user()->hasPermissionTo('appeal-manage')){
+            $appeal_status = Appeal::groupBy('appeal_status_id')
+                ->selectRaw('count(*) as total, appeal_status_id')
+                ->get()
+                ->toArray();
+            $appeals = Appeal::latest()->paginate(10);
+        }
+        else{
+            $appeal_status = Appeal::groupBy('appeal_status_id')
+                ->selectRaw('count(*) as total, appeal_status_id')
+                ->where('appeal_department_id',Auth::user()->department)
+                ->get()
+                ->toArray();
+            $appeals = Appeal::latest()->where('appeal_department_id',Auth::user()->department)->paginate(10);
+        }        
         
         $status_count = [];
         foreach($appeal_status as $val){
             $status_count[$val['appeal_status_id']] = $val['total'];
         }
 
-        $appeals = Appeal::latest()->paginate(10);
         return view('appeals.index',compact(['appeals','status_count']));
     }
 
@@ -65,7 +74,8 @@ class AppealController extends Controller
         ]);
         
         //create tmp var
-        $_department = $request->input('appeal_channel_department_id')?$request->input('appeal_channel_department_id'):'26';
+        $_auth_department = Auth::user()->department??26;
+        $_department = $request->input('appeal_channel_department_id')?$request->input('appeal_channel_department_id'):$_auth_department;
         $_year = date('y',strtotime($request->input('appeal_request_date')));
 
         $data_subject = DataSubject::updateOrCreate(
@@ -138,7 +148,7 @@ class AppealController extends Controller
                     $attachment->file_upload_name = $file['uploadname']; 
                     $attachment->file_extension = $file['extension']; 
                     $attachment->file_size = $file['size']; 
-                    $attachment->weight = ''; 
+                    $attachment->weight = 0; 
                     $attachment->appeal_id = $appeal_id; 
                     $attachment->file_path = $file['uploadpath'].'/'.$file['uploadname']; 
                     $attachment->save();
