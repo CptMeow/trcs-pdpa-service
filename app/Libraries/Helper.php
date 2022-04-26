@@ -190,8 +190,8 @@ class Helper {
 
     public static function Username($user_id)
     {
-        $user = User::find($user_id)->first();
-        return $user->name ?? "-";
+        $user = User::find($user_id);
+        return $user->firstname ?? "-";
     }
 
     public static function JsonDecode($json, $key1 = null, $key2 = null)

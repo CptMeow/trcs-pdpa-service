@@ -7,3 +7,6 @@ a, body, input, label, li, p, span, table, td, th {
 .bg-orange, .bg-orange>a {
     color: #ffffff!important;
 }
+.alert-success>p {
+    color: #ffffff!important;
+}
