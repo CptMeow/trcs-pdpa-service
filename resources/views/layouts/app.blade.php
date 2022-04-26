@@ -212,7 +212,6 @@
 <script src="{{asset('assets/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 <script src="{{asset('assets/plugins/moment/moment-with-locales.min.js')}}"></script>
 <script src="{{asset('assets/dists/js/adminlte.min.js?v=3.2.0')}}"></script>
-
 @section('jspage')
 <!--JS Page here-->
 @show

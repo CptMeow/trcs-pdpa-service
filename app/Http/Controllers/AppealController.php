@@ -71,7 +71,6 @@ class AppealController extends Controller
 
     public function store(Request $request)
     {
-
         $appeal = new Appeal;
 
         $request->validate([

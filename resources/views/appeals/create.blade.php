@@ -184,12 +184,15 @@
                             <div class="col-12">
                                 <div class="">
                                     <label for="formFile" class="form-label">เอกสารแนบ</label>
-                                    <input class="form-control" type="file" name="attachment[]" id="formFile" multiple
-                                    accept=".jpg, .png, .jpeg, .gif, .bmp, .tif, .tiff|image/*, .pdf">
+                                    <div class="dropzone" id="myDropzone">
+                                    </div>
+                                    {{-- <input class="form-control" type="file" name="attachment[]" id="formFile" multiple
+                                    accept=".jpg, .png, .jpeg, .gif, .bmp, .tif, .tiff|image/*, .pdf"> --}}
+                                    <span class="text-sm d-none">กรณีเลือกหลายไฟล์ให้กด CTRL หรือ SHIFT ค้างแล้วเลือกไฟล์ที่ต้องการ</span>
                                 </div>
                             </div>
                         </div>
-                        <div class="row mt-3">
+                        <div class="row">
                             <div class="col-12 mt-3">
                                 <strong>ข้อมูลผู้ร้องเรียน</strong>
                             </div>
@@ -272,7 +275,7 @@
                     
 					<div class="card-footer bg-light">
 						<div class="d-grid gap-2 col-12 col-lg-6 mx-auto py-3 align-items-center text-center">
-							<button type="submit" class="btn btn-danger">บันทึกข้อมูล</button>
+							<button type="submit" class="btn btn-danger" id="submit-all">บันทึกข้อมูล</button>
 						</div>
 					</div>
                 </form>
@@ -280,13 +283,17 @@
         </div>
     </div>
 </div>
+
+</form>
 @endsection
 
 @section('csspage')
 <link rel="stylesheet" href="{{asset('assets/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css')}}"/>
+<link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css" />
 @endsection
 
 @section('jspage')
+<script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
 <script src="{{asset('assets/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js')}}"></script>
 <script src="{{asset('assets/plugins/daterangepicker/daterangepicker.js')}}" type="text/javascript"></script>
 <script type="text/javascript">
@@ -346,5 +353,41 @@
         });
 
     });
-    </script>
+</script>
+
+
+<script>
+Dropzone.options.myDropzone = { // camelized version of the `id`
+    url: '{{route('appeals.store')}}',
+    autoProcessQueue: false,
+    uploadMultiple: true,
+    parallelUploads: 100,
+    maxFiles: 100,
+    paramName: "attachment", // The name that will be used to transfer the file
+    maxFilesize: 2, // MB
+    acceptedFiles: "image/*,application/pdf",
+    addRemoveLinks: true,
+    dictDefaultMessage: "คลิกหรือลากไฟล์มาวางที่นี้เพื่ออัพโหลดไฟล์ <span class=\"text-red\">*รองรับไฟล์ รูปภาพ และ PDF เท่านั้น*</span> <br>กรณีเลือกหลายไฟล์ให้กด CTRL หรือ SHIFT ค้างแล้วเลือกไฟล์ที่ต้องการ",
+    init: function() {
+        dzClosure = this; // Makes sure that 'this' is understood inside the functions below.
+
+        // for Dropzone to process the queue (instead of default form behavior):
+        document.getElementById("submit-all").addEventListener("click", function(e) {
+            // Make sure that the form isn't actually being sent.
+            e.preventDefault();
+            e.stopPropagation();
+            dzClosure.processQueue();
+        });
+
+        //send all the form data along with the files:
+        this.on("sendingmultiple", function(data, xhr, formData) {
+            $(":input[name]", $("form")).each(function () {formData.append(this.name, $(':input[name=' + this.name + ']', $("form")).val());});
+        });
+        this.on("success", function(file, response) {
+            window.location.href = "{{route('appeals.store')}}";
+        })
+        
+    }
+};
+</script>
 @endsection

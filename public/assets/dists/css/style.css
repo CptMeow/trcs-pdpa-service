@@ -15,3 +15,7 @@ a, body, input, label, li, p, span, table, td, th {
 a>.info-box:hover {
 	background-color: rgb(245, 245, 245);
 }
+
+.dropzone {
+    border: 2px dashed rgba(0,0,0,.3) !important;
+}
