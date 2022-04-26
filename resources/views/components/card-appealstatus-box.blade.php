@@ -29,14 +29,22 @@ switch ($type) {
 }
 @endphp
 
+@if($slot!="0")
+<a href="{{route('appeals.index',['status' => $type])}}">
+    <div class="info-box">
+        <span class="info-box-icon {{ $type_class }}"><i class="far fa-envelope"></i></span>
+        <div class="info-box-content">
+            <span class="info-box-text">{{ Helper::AppealStatus($type) }}</span>
+            <span class="info-box-number">{{ $slot }}</span>
+        </div> 
+    </div>
+</a>
+@else 
 <div class="info-box">
     <span class="info-box-icon {{ $type_class }}"><i class="far fa-envelope"></i></span>
     <div class="info-box-content">
         <span class="info-box-text">{{ Helper::AppealStatus($type) }}</span>
-        @if($slot!="0")
-        <span class="info-box-number"><a href="{{route('appeals.index',['status' => $type])}}">{{ $slot }}</a></span>
-        @else
         <span class="info-box-number">{{ $slot }}</span>
-        @endif
-    </div>
+    </div> 
 </div>
+@endif

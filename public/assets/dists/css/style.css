@@ -10,3 +10,8 @@ a, body, input, label, li, p, span, table, td, th {
 .alert-success>p {
     color: #ffffff!important;
 }
+
+/*Override component*/
+a>.info-box:hover {
+	background-color: rgb(245, 245, 245);
+}

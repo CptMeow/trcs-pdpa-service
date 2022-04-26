@@ -48,10 +48,10 @@
         </div>
     </div>
     <div class="row px-3 form-group text-right mb-0">
-            <label for="staticEmail" class="col-sm-11 col-form-label">
+            <label for="staticEmail" class="col-sm-10 col-form-label">
                 สถานะใบคำร้อง
             </label>
-            <div class="col-sm-1">
+            <div class="col-sm-2">
                 {!! Form::select('filter_status', [''=>'ทั้งหมด','1'=>'เปิด','2'=>'อยู่ระหว่างดำเนินการ','3'=>'ปิด','4'=>'ส่งต่อหน่วยงานเจ้าของข้อมูล','5'=>'ปฏิเสธ','6'=>'ส่งต่อ สคส','7'=>'Re-Open'],request()->get('status'), array('class' => 'form-control form-control-sm','id'=>'filter_status')) !!}
             </div>
     </div>
