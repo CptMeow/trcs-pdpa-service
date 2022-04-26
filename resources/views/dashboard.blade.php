@@ -4,7 +4,7 @@
     <div class="row pt-3">
         @foreach (Helper::AppealStatus() as $key => $status)
         <div class="col-md">
-            <x-card-box :type=$key>{{ isset($status_count[$key])?$status_count[$key]:0 }}</x-card-box>
+            <x-card-appealstatus-box :type=$key>{{ isset($status_count[$key])?$status_count[$key]:0 }}</x-card-box>
         </div>
         @endforeach
     </div>

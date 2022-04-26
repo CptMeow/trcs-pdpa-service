@@ -14,7 +14,7 @@
             </h4>
         </div>
         <div class="col-6 pr-3 text-right">
-            <a href="{{ route('appeals.create') }}" class="btn btn-primary">เพิ่มข้อมูล</a>
+            <a href="{{ route('appeals.create') }}" class="btn btn-primary"><i class="fas fa-plus"></i> เพิ่มข้อมูล</a>
         </div>
     </div>
     <div class="row p-3">
@@ -46,6 +46,14 @@
             <h3 class="bold no-mtop">{{ $status_count['7']??0 }}</h3>
             <p style="color:#84c529" class="text-gray font-medium no-mbot">Re-Open</p>
         </div>
+    </div>
+    <div class="row px-3 form-group text-right mb-0">
+            <label for="staticEmail" class="col-sm-11 col-form-label">
+                สถานะใบคำร้อง
+            </label>
+            <div class="col-sm-1">
+                {!! Form::select('filter_status', [''=>'ทั้งหมด','1'=>'เปิด','2'=>'อยู่ระหว่างดำเนินการ','3'=>'ปิด','4'=>'ส่งต่อหน่วยงานเจ้าของข้อมูล','5'=>'ปฏิเสธ','6'=>'ส่งต่อ สคส','7'=>'Re-Open'],request()->get('status'), array('class' => 'form-control form-control-sm','id'=>'filter_status')) !!}
+            </div>
     </div>
     <div class="row p-3">
         <div class="col-12">
@@ -117,7 +125,11 @@
 @section('jspage')
 <script type="text/javascript">
     $(function() {
-
+        $('#filter_status').change(function(){
+            var url = new URL(window.location.href);
+            url.searchParams.set("status", $(this).val()); // setting your param
+            location.href = url.href;
+        });
     });
     </script>
 @endsection

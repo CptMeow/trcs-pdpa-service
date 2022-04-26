@@ -23,12 +23,17 @@ class AppealController extends Controller
     //
     public function index(Request $request)
     {
+        $status = $request->input('status');
+
         if(Auth::user()->hasRole('Admin') || Auth::user()->hasPermissionTo('appeal-manage')){
             $appeal_status = Appeal::groupBy('appeal_status_id')
                 ->selectRaw('count(*) as total, appeal_status_id')
                 ->get()
                 ->toArray();
-            $appeals = Appeal::latest()->paginate(10);
+
+            $appeals = Appeal::latest();
+            if(!empty($status)) $appeals = $appeals->where('appeal_status_id',$status);
+            $appeals = $appeals->paginate(10);
         }
         else{
             $appeal_status = Appeal::groupBy('appeal_status_id')
@@ -36,7 +41,10 @@ class AppealController extends Controller
                 ->where('appeal_department_id',Auth::user()->department)
                 ->get()
                 ->toArray();
-            $appeals = Appeal::latest()->where('appeal_department_id',Auth::user()->department)->paginate(10);
+
+            $appeals = Appeal::latest()->where('appeal_department_id',Auth::user()->department);
+            if(!empty($status)) $appeals = $appeals->where('appeal_status_id',$status);
+            $appeals = $appeals->paginate(10);
         }        
         
         $status_count = [];
