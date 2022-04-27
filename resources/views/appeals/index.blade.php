@@ -17,7 +17,7 @@
             <a href="{{ route('appeals.create') }}" class="btn btn-primary"><i class="fas fa-plus"></i> เพิ่มข้อมูล</a>
         </div>
     </div>
-    <div class="row p-3">
+    {{-- <div class="row p-3">
         <div class="col-md col-xs-6 border-right">
         <h3 class="bold no-mtop">{{ $status_count['1']??0 }}</h3>
         <p style="color:#989898" class="text-orange font-medium no-mbot">เปิด</p>
@@ -46,6 +46,13 @@
             <h3 class="bold no-mtop">{{ $status_count['7']??0 }}</h3>
             <p style="color:#84c529" class="text-gray font-medium no-mbot">Re-Open</p>
         </div>
+    </div> --}}
+    <div class="row px-3">
+        @foreach (Helper::AppealStatus() as $key => $status)
+        <div class="col-md">
+            <x-card-appealstatus-box :type=$key>{{ isset($status_count[$key])?$status_count[$key]:0 }}</x-card-box>
+        </div>
+        @endforeach
     </div>
     <div class="row px-3 form-group text-right mb-0">
             <label for="staticEmail" class="col-sm-10 col-form-label">
@@ -58,7 +65,7 @@
     <div class="row p-3">
         <div class="col-12">
             <div class="card shadow bg-body rounded">
-                <table class="table strip">
+                <table class="table strip table-hover">
                     <thead>
                         <tr>
                             <th>หมายเลขใบคำร้อง</th>
@@ -72,7 +79,7 @@
                         @forelse ($appeals as $appeal)
                         <tr>
                             <td class="align-middle" width="160">
-                                <x-badge><i class="fas fa-file"></i> {{ $appeal->appeal_uuid }}</x-badge>
+                                <x-badge icon="fas fa-file" :type="$appeal->appeal_status_id"> {{ $appeal->appeal_uuid }}</x-badge>
                             </td>
                             <td class="align-middle">
                                 {{ Helper::AppealType($appeal->appeal_type, $appeal->appeal_type_other) }}
