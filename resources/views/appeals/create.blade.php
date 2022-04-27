@@ -25,49 +25,49 @@
                                 <label for="v_fname" class="form-label">ประเภทคำร้อง<span class="text-danger">*</span></label>
                                 <div class="form-check">
                                     <input class="form-check-input" name="appeal_type" type="radio" value="withdraw_consent" id="appeal_right_to_withdraw_consent" required>
-                                    <label class="form-check-label" for="appeal_right_to_withdraw_consent">
+                                    <label class="form-check-label pointer" for="appeal_right_to_withdraw_consent">
                                         ขอถอนความยินยอม (Right to withdraw consent)
                                     </label>
                                 </div>
                                 <div class="form-check">
                                     <input class="form-check-input" name="appeal_type" type="radio" value="appeal_right_to_access" id="appeal_right_to_access" required>
-                                    <label class="form-check-label" for="appeal_right_to_access">
+                                    <label class="form-check-label pointer" for="appeal_right_to_access">
                                         ขอเข้าถึงข้อมูล (Right to access)
                                     </label>
                                 </div>
                                 <div class="form-check">
                                     <input class="form-check-input" name="appeal_type" type="radio" value="appeal_right_to_data_portability" id="appeal_right_to_data_portability" required>
-                                    <label class="form-check-label" for="appeal_right_to_data_portability">
+                                    <label class="form-check-label pointer" for="appeal_right_to_data_portability">
                                         ขอถ่ายโอนข้อมูล (Right to data portability)
                                     </label>
                                 </div>
                                 <div class="form-check">
                                     <input class="form-check-input" name="appeal_type" type="radio" value="appeal_right_to_object" id="appeal_right_to_object" required>
-                                    <label class="form-check-label" for="appeal_right_to_object">
+                                    <label class="form-check-label pointer" for="appeal_right_to_object">
                                         ขอคัดค้านการเก็บรวบรวม ใช้ เปิดเผย ข้อมูลส่วนบุคคล (Right to object)
                                     </label>
                                 </div>
                                 <div class="form-check">
                                     <input class="form-check-input" name="appeal_type" type="radio" value="appeal_right_to_erasure" id="appeal_right_to_erasure" required>
-                                    <label class="form-check-label" for="appeal_right_to_erasure">
+                                    <label class="form-check-label pointer" for="appeal_right_to_erasure">
                                         ขอให้ลบหรือทำลายข้อมูล (Right to erasure)
                                     </label>
                                 </div>
                                 <div class="form-check">
                                     <input class="form-check-input" name="appeal_type" type="radio" value="appeal_right_to_restriction_of_processing" id="appeal_right_to_restriction_of_processing" required>
-                                    <label class="form-check-label" for="appeal_right_to_restriction_of_processing">
+                                    <label class="form-check-label pointer" for="appeal_right_to_restriction_of_processing">
                                         ขอให้ระงับการใช้ข้อมูล (Right to restriction of processing)
                                     </label>
                                 </div>
                                 <div class="form-check">
                                     <input class="form-check-input" name="appeal_type" type="radio" value="appeal_right_to_rectification" id="appeal_right_to_rectification" required>
-                                    <label class="form-check-label" for="appeal_right_to_rectification">
+                                    <label class="form-check-label pointer" for="appeal_right_to_rectification">
                                         ขอให้แก้ไขข้อมูล (Right to rectification)
                                     </label>
                                 </div>
                                 <div class="form-check">
                                     <input class="form-check-input" name="appeal_type" type="radio" value="appeal_right_to_other" id="appeal_right_to_other" required>
-                                    <label class="form-check-label" for="appeal_right_to_other">
+                                    <label class="form-check-label pointer" for="appeal_right_to_other">
                                         อื่นๆ 
                                     </label>
                                     <input type="text" class="form-control d-none" name="appeal_type_other" id="appeal_type_other_reason" placeholder="ระบุเหตุผล" required disabled>
@@ -181,7 +181,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-12">
+                            <div class="col-12 mt-3">
                                 <div class="">
                                     <label for="formFile" class="form-label">เอกสารแนบ</label>
                                     <div class="dropzone" id="myDropzone">

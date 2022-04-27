@@ -3,6 +3,9 @@ a, body, input, label, li, p, span, table, td, th {
 	color: #595555;
 }
 
+/*Utility class*/
+.pointer {cursor: pointer;}
+
 /*Fix color*/
 .bg-orange, .bg-orange>a {
     color: #ffffff!important;
@@ -18,4 +21,8 @@ a>.info-box:hover {
 
 .dropzone {
     border: 2px dashed rgba(0,0,0,.3) !important;
+}
+
+.data-dz-errormessage {
+    color: #FFFFFF !important;
 }
