@@ -275,7 +275,7 @@
                     
 					<div class="card-footer bg-light">
 						<div class="d-grid gap-2 col-12 col-lg-6 mx-auto py-3 align-items-center text-center">
-							<button type="submit" class="btn btn-danger" id="submit-all">บันทึกข้อมูล</button>
+							<button type="submit" class="btn btn-danger" id="submit-all"><i class="fas fa-save"></i> บันทึกข้อมูล</button>
 						</div>
 					</div>
                 </form>
@@ -374,10 +374,16 @@ Dropzone.options.myDropzone = { // camelized version of the `id`
         // for Dropzone to process the queue (instead of default form behavior):
         document.getElementById("submit-all").addEventListener("click", function(e) {
             // Make sure that the form isn't actually being sent.
-            e.preventDefault();
-            e.stopPropagation();
-            dzClosure.processQueue();
+            if (dzClosure.getQueuedFiles().length > 0) {                        
+                e.preventDefault();
+                e.stopPropagation();
+                dzClosure.processQueue();
+            } 
+            else {                       
+                $("#appreal_form").submit();
+            }
         });
+        
 
         //send all the form data along with the files:
         this.on("sendingmultiple", function(data, xhr, formData) {

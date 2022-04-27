@@ -4,7 +4,7 @@ a, body, input, label, li, p, span, table, td, th {
 }
 
 /*Utility class*/
-.pointer {cursor: pointer;}
+.pointer:hover {cursor: pointer;}
 
 /*Fix color*/
 .bg-orange, .bg-orange>a {
@@ -22,7 +22,9 @@ a>.info-box:hover {
 .dropzone {
     border: 2px dashed rgba(0,0,0,.3) !important;
 }
-
-.data-dz-errormessage {
+.dropzone .dz-preview .dz-error-message {
+    background: linear-gradient(to bottom, #ff1129, #ff1129);
+}
+.dz-error-message>span {
     color: #FFFFFF !important;
 }
