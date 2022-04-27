@@ -17,17 +17,17 @@ class ChartController extends Controller
     public function requestDate(Request $request)
     {
         if(Auth::user()->hasRole('Admin') || Auth::user()->hasPermissionTo('appeal-manage')){
-            $appeals = Appeal::groupBy(DB::raw('date(appeal_request_date)'))
-                ->selectRaw('count(appeal_request_date) as total, date(appeal_request_date) as label')
-                ->OrderBy(DB::raw('date(appeal_request_date)'),'asc')
+            $appeals = Appeal::groupBy(DB::raw('DATE_FORMAT(appeal_request_date,\'%d/%m/%Y\')'))
+                ->selectRaw('count(appeal_request_date) as total, DATE_FORMAT(appeal_request_date,\'%d/%m/%Y\') as label')
+                ->OrderBy(DB::raw('DATE_FORMAT(appeal_request_date,\'%d/%m/%Y\')'),'asc')
                 ->get()
                 ->toArray();
         }
         else{
-            $appeals = Appeal::groupBy(DB::raw('date(appeal_request_date)'))
-                ->selectRaw('count(appeal_request_date) as total, date(appeal_request_date) as label')
+            $appeals = Appeal::groupBy(DB::raw('DATE_FORMAT(appeal_request_date,\'%d/%m/%Y\')'))
+                ->selectRaw('count(appeal_request_date) as total, DATE_FORMAT(appeal_request_date,\'%d/%m/%Y\') as label')
                 ->where('appeal_department_id',Auth::user()->department)
-                ->OrderBy(DB::raw('date(appeal_request_date)'),'asc')
+                ->OrderBy(DB::raw('DATE_FORMAT(appeal_request_date,\'%d/%m/%Y\')'),'asc')
                 ->get()
                 ->toArray();
         }    
