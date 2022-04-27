@@ -126,8 +126,8 @@
         </div>
     </div>
 
-    <div class="row justify-content-center">
-        <div class="col-10">
+    <div class="row">
+        <div class="col-11">
             <div class="timeline">
                 @foreach ($activities as $activity)
                     <x-timeline-item :activity="$activity"/>

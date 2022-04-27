@@ -127,10 +127,13 @@ class AppealController extends Controller
             $appeal->save();
 
             // create activity
+            $_activity['comment'] = 'สร้างใบคำร้องหมายเลข #'.$appeal_uuid;
+            $_json = json_encode($_activity);
             $AppealActivity = AppealActivity::create([
                 'appeal_activities_event_name' => 'create_appeal',
                 'appeal_id' => $appeal->appeal_id,
-                'user_id' => Auth::id()
+                'user_id' => Auth::id(),
+                'appeal_activities_data' => $_json
             ]);
             $AppealActivity->save();
 
@@ -193,18 +196,18 @@ class AppealController extends Controller
         # code...
 
         //dd(AppealActivity::all());
-        $data['status']['old'] = $appeal->appeal_status_id;
-        $data['status']['new'] = $request->input('appeal_status');
+        $_activity['status']['old'] = $appeal->appeal_status_id;
+        $_activity['status']['new'] = $request->input('appeal_status');
 
-        $data['status']['comment'] = $request->input('activity_comment');
+        $_activity['comment'] = $request->input('activity_comment');
 
-        $json = json_encode($data);
+        $_json = json_encode($_activity);
 
         $AppealActivity = AppealActivity::create([
             'appeal_activities_event_name' => 'change_status',
             'appeal_id' => $appeal->appeal_id,
             'user_id' => Auth::id(),
-            'appeal_activities_data' => $json
+            'appeal_activities_data' => $_json
         ]);
         $AppealActivity->save();
 

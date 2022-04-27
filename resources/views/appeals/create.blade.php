@@ -379,7 +379,7 @@ Dropzone.options.myDropzone = { // camelized version of the `id`
                 e.stopPropagation();
                 dzClosure.processQueue();
             } 
-            else {                       
+            else if($('form.needs-validation').checkValidity() === true) {                       
                 $("#appreal_form").submit();
             }
         });
