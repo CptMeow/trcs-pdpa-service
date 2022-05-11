@@ -17,6 +17,7 @@
     @section('csspage')
         
     @show
+    <script id="becookies.tech-scripts" src="https://core.becookies.tech/script.js" data-id="31e2e680-b4a5-11ec-b933-19e2e851382f" charset="utf-8"></script>
 </head>
 <body class="hold-transition sidebar-collapse layout-top-nav">
     <div class="wrapper">

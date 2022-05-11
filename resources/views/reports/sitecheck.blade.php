@@ -13,6 +13,8 @@
                     <th rowspan="2" class="align-middle text-white">ชื่อเว็บไซต์</th>
                     <th rowspan="2" class="align-middle text-white">Domain</th>
                     <th rowspan="2" class="align-middle text-white">Policy</th>
+                    <th rowspan="2" class="align-middle text-white">Policy</th>
+                    <th rowspan="2" class="align-middle text-white">Policy</th>
                     <th colspan="11" class="text-center align-middle text-white">ข้อมูลส่วนบุคคล</th>
                 </tr>
                 <tr>
@@ -34,22 +36,24 @@
                     <td>{{ $site->depart_name }}</td>
                     <td>{{ $site->website_name }}</td>
                     <td>{{ $site->domain }}<a href="http://{{$site->domain}}" class="btn btn-xs" target="_blank"><i class="fas fa-external-link-alt text-gray"></i></a></td>
-                    <td class="text-center">{!! ($site->flag=='PASS')?'<i class="fas fa-check-circle text-success"></i>':'<i class="fas fa-times-circle text-danger"></i>' !!}</td>
-                    <td class="text-center {{ ($site->flag=='PASS')?'text-success':'text-danger' }}">{!! $site->CID_CHECK?'<i class="fas fa-check-circle" data-toggle="tooltip" data-placement="top" title="พบ '.$site->CID_CHECK.' จุด "></i>':'' !!} 
+                    <td class="text-center">{!! ($site->cookie_flag=='PASS')?'<i class="fas fa-check-circle text-success"></i>':'<i class="fas fa-times-circle text-danger"></i>' !!}</td>
+                    <td class="text-center">{!! ($site->tos_flag=='PASS')?'<i class="fas fa-check-circle text-success"></i>':'<i class="fas fa-times-circle text-danger"></i>' !!}</td>
+                    <td class="text-center">{!! ($site->pdpa_flag=='PASS')?'<i class="fas fa-check-circle text-success"></i>':'<i class="fas fa-times-circle text-danger"></i>' !!}</td>
+                    <td class="text-center {{ ($site->pdpa_flag=='PASS')?'text-success':'text-danger' }}">{!! $site->CID_CHECK?'<i class="fas fa-check-circle" data-toggle="tooltip" data-placement="top" title="พบ '.$site->CID_CHECK.' จุด "></i>':'' !!} 
                     {{-- @isset($site->CID_CHECK_ITEM)
                         @foreach (json_decode($site->CID_CHECK_ITEM) as $item)
                             {{ $item->url }}
                         @endforeach</td>
                     @endisset --}}
-                    <td class="text-center {{ ($site->flag=='PASS')?'text-success':'text-danger' }}">{!! $site->NAME_CHECK?'<i class="fas fa-check-circle" data-toggle="tooltip" data-placement="top" title="พบ '.$site->NAME_CHECK.' จุด "></i>':'' !!}</td>
-                    <td class="text-center {{ ($site->flag=='PASS')?'text-success':'text-danger' }}">{!! $site->DOB_CHECK?'<i class="fas fa-check-circle" data-toggle="tooltip" data-placement="top" title="พบ '.$site->DOB_CHECK.' จุด "></i>':'' !!}</td>
-                    <td class="text-center {{ ($site->flag=='PASS')?'text-success':'text-danger' }}">{!! $site->GENDER_CHECK?'<i class="fas fa-check-circle" data-toggle="tooltip" data-placement="top" title="พบ '.$site->GENDER_CHECK.' จุด "></i>':'' !!}</td>
-                    <td class="text-center {{ ($site->flag=='PASS')?'text-success':'text-danger' }}">{!! $site->BLOOD_CHECK?'<i class="fas fa-check-circle" data-toggle="tooltip" data-placement="top" title="พบ '.$site->BLOOD_CHECK.' จุด "></i>':'' !!}</td>
-                    <td class="text-center {{ ($site->flag=='PASS')?'text-success':'text-danger' }}">{!! $site->RELIGION_CHECK?'<i class="fas fa-check-circle" data-toggle="tooltip" data-placement="top" title="พบ '.$site->RELIGION_CHECK.' จุด "></i>':'' !!}</td>
-                    <td class="text-center {{ ($site->flag=='PASS')?'text-success':'text-danger' }}">{!! $site->NATION_CHECK?'<i class="fas fa-check-circle" data-toggle="tooltip" data-placement="top" title="พบ '.$site->NATION_CHECK.' จุด "></i>':'' !!}</td>
-                    <td class="text-center {{ ($site->flag=='PASS')?'text-success':'text-danger' }}">{!! $site->ADDRESS_CHECK?'<i class="fas fa-check-circle" data-toggle="tooltip" data-placement="top" title="พบ '.$site->ADDRESS_CHECK.' จุด "></i>':'' !!}</td>
-                    <td class="text-center {{ ($site->flag=='PASS')?'text-success':'text-danger' }}">{!! $site->EMAIL_CHECK?'<i class="fas fa-check-circle" data-toggle="tooltip" data-placement="top" title="พบ '.$site->EMAIL_CHECK.' จุด "></i>':'' !!}</td>
-                    <td class="text-center {{ ($site->flag=='PASS')?'text-success':'text-danger' }}">{!! $site->TEL_CHECK?'<i class="fas fa-check-circle" data-toggle="tooltip" data-placement="top" title="พบ '.$site->TEL_CHECK.' จุด "></i>':'' !!}</td>
+                    <td class="text-center {{ ($site->pdpa_flag=='PASS')?'text-success':'text-danger' }}">{!! $site->NAME_CHECK?'<i class="fas fa-check-circle" data-toggle="tooltip" data-placement="top" title="พบ '.$site->NAME_CHECK.' จุด "></i>':'' !!}</td>
+                    <td class="text-center {{ ($site->pdpa_flag=='PASS')?'text-success':'text-danger' }}">{!! $site->DOB_CHECK?'<i class="fas fa-check-circle" data-toggle="tooltip" data-placement="top" title="พบ '.$site->DOB_CHECK.' จุด "></i>':'' !!}</td>
+                    <td class="text-center {{ ($site->pdpa_flag=='PASS')?'text-success':'text-danger' }}">{!! $site->GENDER_CHECK?'<i class="fas fa-check-circle" data-toggle="tooltip" data-placement="top" title="พบ '.$site->GENDER_CHECK.' จุด "></i>':'' !!}</td>
+                    <td class="text-center {{ ($site->pdpa_flag=='PASS')?'text-success':'text-danger' }}">{!! $site->BLOOD_CHECK?'<i class="fas fa-check-circle" data-toggle="tooltip" data-placement="top" title="พบ '.$site->BLOOD_CHECK.' จุด "></i>':'' !!}</td>
+                    <td class="text-center {{ ($site->pdpa_flag=='PASS')?'text-success':'text-danger' }}">{!! $site->RELIGION_CHECK?'<i class="fas fa-check-circle" data-toggle="tooltip" data-placement="top" title="พบ '.$site->RELIGION_CHECK.' จุด "></i>':'' !!}</td>
+                    <td class="text-center {{ ($site->pdpa_flag=='PASS')?'text-success':'text-danger' }}">{!! $site->NATION_CHECK?'<i class="fas fa-check-circle" data-toggle="tooltip" data-placement="top" title="พบ '.$site->NATION_CHECK.' จุด "></i>':'' !!}</td>
+                    <td class="text-center {{ ($site->pdpa_flag=='PASS')?'text-success':'text-danger' }}">{!! $site->ADDRESS_CHECK?'<i class="fas fa-check-circle" data-toggle="tooltip" data-placement="top" title="พบ '.$site->ADDRESS_CHECK.' จุด "></i>':'' !!}</td>
+                    <td class="text-center {{ ($site->pdpa_flag=='PASS')?'text-success':'text-danger' }}">{!! $site->EMAIL_CHECK?'<i class="fas fa-check-circle" data-toggle="tooltip" data-placement="top" title="พบ '.$site->EMAIL_CHECK.' จุด "></i>':'' !!}</td>
+                    <td class="text-center {{ ($site->pdpa_flag=='PASS')?'text-success':'text-danger' }}">{!! $site->TEL_CHECK?'<i class="fas fa-check-circle" data-toggle="tooltip" data-placement="top" title="พบ '.$site->TEL_CHECK.' จุด "></i>':'' !!}</td>
                 </tr>
                 @endforeach
             </tbody>

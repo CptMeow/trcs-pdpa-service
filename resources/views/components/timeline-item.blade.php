@@ -10,7 +10,7 @@ switch ($activity->appeal_activities_event_name) {
         if(!empty($_data->comment)) {
             $_comment = property_exists($_data, 'comment')?$_data->comment:'';
         }
-        
+
         $text = '<span class="text-red">'.Helper::AppealStatus($_data->status->old).'</span> เป็น <span class="text-green">'.Helper::AppealStatus($_data->status->new).'</span>
             <span>'.$_comment.'</span>';
         $title = 'เปลี่ยนสถานะใบคำร้อง';
@@ -24,7 +24,7 @@ switch ($activity->appeal_activities_event_name) {
 
         $text = $_comment;
         $title = 'สร้างใบคำร้อง';
-        $type_class = 'fas fa-plus bg-info';
+        $type_class = 'fas fa-envelope-open-text bg-info';
         break;
     case '3':
         $text = '';

@@ -16,6 +16,7 @@
 
     <link rel="stylesheet" href="{{ asset('assets/dists/css/adminlte.min.css?v=3.2.0') }}">
     <link rel="stylesheet" href="{{asset('assets/dists/css/style.css?v=3.2.0')}}">
+    <script id="becookies.tech-scripts" src="https://core.becookies.tech/script.js" data-id="31e2e680-b4a5-11ec-b933-19e2e851382f" charset="utf-8"></script>
 </head>
 
 <body class="hold-transition login-page sidebar-collapse ">
