@@ -32,6 +32,11 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
+        activity()
+        ->withProperties(["user"=>$request->email])
+        ->event('auth_login')
+        ->log('user login');
+
         return redirect()->intended(RouteServiceProvider::HOME);
     }
 

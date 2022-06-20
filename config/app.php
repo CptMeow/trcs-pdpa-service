@@ -178,6 +178,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         Spatie\Permission\PermissionServiceProvider::class,
         PhpJunior\LaravelHtmlEncrypt\LaravelHtmlEncryptServiceProvider::class,
+        Royalmar\LineNotify\Providers\LineNotifyServiceProvider::class,
 
     ],
 
@@ -195,7 +196,8 @@ return [
     'aliases' => Facade::defaultAliases()->merge([
         // ...
         'Helper' => App\Libraries\Helper::class,
-	Spatie\Permission\PermissionServiceProvider::class,
+	    Spatie\Permission\PermissionServiceProvider::class,
+        'LineNotify' => Royalmar\LineNotify\Facades\LineNotify::class,
     ])->toArray(),
 
 ];

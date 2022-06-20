@@ -12,12 +12,13 @@
                     <th rowspan="2" class="align-middle text-white">หน่วยงาน</th>
                     <th rowspan="2" class="align-middle text-white">ชื่อเว็บไซต์</th>
                     <th rowspan="2" class="align-middle text-white">Domain</th>
-                    <th rowspan="2" class="align-middle text-white">Cookie Policy</th>
-                    <th rowspan="2" class="align-middle text-white">TOS</th>
-                    <th rowspan="2" class="align-middle text-white">PDPA Policy</th>
+                    <th colspan="3" class="text-center align-middle text-white">Policy</th>
                     <th colspan="11" class="text-center align-middle text-white">ข้อมูลส่วนบุคคล</th>
                 </tr>
                 <tr>
+                    <th class="text-center text-white">Cookie</th>
+                    <th class="text-center text-white">TOS</th>
+                    <th class="text-center text-white">PDPA</th>
                     <th class="text-center text-white">บัตรประชาชน</th>
                     <th class="text-center text-white">ชื่อสกุล</th>
                     <th class="text-center text-white">วันเดือนปีเกิด</th>

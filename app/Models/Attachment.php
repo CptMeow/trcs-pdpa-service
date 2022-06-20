@@ -18,5 +18,4 @@ class attachment extends Model
         'weight', 
         'appeal_id'
     ];
-    
 }

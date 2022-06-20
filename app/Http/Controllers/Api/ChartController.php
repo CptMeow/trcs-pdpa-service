@@ -13,7 +13,7 @@ use App\Models\User;
 
 class ChartController extends Controller
 {
-    //
+
     public function requestDate(Request $request)
     {
         if(Auth::user()->hasRole('Admin') || Auth::user()->hasPermissionTo('appeal-manage')){
@@ -45,7 +45,6 @@ class ChartController extends Controller
         return $array;
     }
 
-    //
     public function channel(Request $request)
     {
         if(Auth::user()->hasRole('Admin') || Auth::user()->hasPermissionTo('appeal-manage')){
