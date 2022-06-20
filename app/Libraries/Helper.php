@@ -51,7 +51,9 @@ class Helper {
             "appeal_right_to_other" => "อื่นๆ",
         ];
 
-        return $type_id ? $type[$type_id]:$type;
+        $reason = $reason?" (".$reason.")":"";
+
+        return $type_id ? $type[$type_id].$reason:$type;
     }
 
     public static function AppealRequestDate(String $date)

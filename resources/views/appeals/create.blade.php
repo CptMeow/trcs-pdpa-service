@@ -184,11 +184,11 @@
                             <div class="col-12 mt-3">
                                 <div class="">
                                     <label for="formFile" class="form-label">เอกสารแนบ</label>
-                                    <div class="dropzone" id="myDropzone">
-                                    </div>
-                                    {{-- <input class="form-control" type="file" name="attachment[]" id="formFile" multiple
-                                    accept=".jpg, .png, .jpeg, .gif, .bmp, .tif, .tiff|image/*, .pdf"> --}}
-                                    <span class="text-sm d-none">กรณีเลือกหลายไฟล์ให้กด CTRL หรือ SHIFT ค้างแล้วเลือกไฟล์ที่ต้องการ</span>
+                                    {{-- <div class="dropzone" id="myDropzone">
+                                    </div> --}}
+                                    <input class="form-control" type="file" name="attachment[]" id="formFile" multiple
+                                    accept=".jpg, .png, .jpeg, .gif, .bmp, .tif, .tiff|image/*, .pdf">
+                                    <span class="text-sm">กรณีเลือกหลายไฟล์ให้กด CTRL หรือ SHIFT ค้างแล้วเลือกไฟล์ที่ต้องการ</span>
                                 </div>
                             </div>
                         </div>
