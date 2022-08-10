@@ -43,8 +43,16 @@
         </div>
 
     </div>
-    <div class="col-12">
-        <a href="https://it.redcross.or.th/pdpaforthairedcross/" target="_blank">เอกสารเกี่ยวกับนโยบายและแนวปฏิบัติในการคุ้มครองข้อมูลส่วนบุคคล</a>
+    <div class="col-12 mt-2 text-center">
+        <a class="btn bg-info btn-app" href="https://it.redcross.or.th/pdpaforthairedcross/" target="_blank" >
+            <i class="fas fa-book"></i> เอกสาร PDPA
+        </a>
+        
+        <a class="btn bg-info btn-app" href="https://pdpa.redcross.or.th/tools/checklist/" >
+            <i class="fas fa-tasks"></i> PDPA Checklist
+        </a>
+        {{-- <a href="https://it.redcross.or.th/pdpaforthairedcross/" target="_blank" class="btn btn-success btn-block btn-sm">เอกสารเกี่ยวกับนโยบายและแนวปฏิบัติในการคุ้มครองข้อมูลส่วนบุคคล</a>
+        <a href="https://pdpa.redcross.or.th/tools/checklist/" class="btn btn-success btn-block btn-sm">Checklist แนวปฏิบัติด้านการคุ้มครองข้อมูลส่วนบุคคล</a> --}}
     </div>
 </div>
 @endsection
