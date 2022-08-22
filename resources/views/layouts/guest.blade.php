@@ -23,7 +23,7 @@
     @section('content')
         
     @show
-    <div>
+    <div style="opacity: 0.8;">
         <section class="footer">
             <footer class="main-footer fixed-bottom">
                 <div class="float-right d-sm-inline">

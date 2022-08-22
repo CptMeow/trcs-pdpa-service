@@ -7,11 +7,12 @@
 <!-- Validation Errors -->
 <x-auth-validation-errors class="mb-4 alert alert-danger" :errors="$errors" />
 <div class="login-box">
-    <div class="login-logo">
-        PDPA Service
-    </div>
-    <div class="card">
-        <div class="card-body login-card-body">
+    
+    <div class="card " style="opacity: 0.95">
+        <div class="login-logo pb-0 mb-0">
+            PDPA Service
+        </div>
+        <div class="card-body login-card-body rounded">
             <p class="login-box-msg"></p>
             <form method="POST" action="{{ route('login') }}" id="login-form" class="form">
                 @csrf

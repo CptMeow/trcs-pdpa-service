@@ -15,6 +15,13 @@ a, body, input, label, li, p, span, table, td, th {
 }
 
 /*Override component*/
+.login-page {
+    background-image: url("../img/bg_bggenerator_com_3.jpg");
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-size: cover; /* Resize the background image to cover the entire container */
+}
+
 .brand-link .brand-image {
     float: left;
     line-height: .8;
