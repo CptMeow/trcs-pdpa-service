@@ -1,5 +1,16 @@
 @extends('layouts.app')
 
+@section('content-header')
+<div class="col-sm-6">
+    <h1>
+        ภาพรวมใบคำร้อง
+    </h1>
+</div>
+<div class="col-6 text-right">
+    <a href="{{ route('appeals.create') }}" class="btn btn-primary"><i class="fas fa-plus"></i> เพิ่มข้อมูล</a>
+</div>
+@endsection
+
 @section('content')
 <div class="container-fuild">
     @if ($message = Session::get('success'))
@@ -7,16 +18,6 @@
             <p>{{ $message }}</p>
         </div>
     @endif
-    <div class="row my-4">
-        <div class="col-6 pl-3">
-            <h4>
-                ภาพรวมใบคำร้อง
-            </h4>
-        </div>
-        <div class="col-6 pr-3 text-right">
-            <a href="{{ route('appeals.create') }}" class="btn btn-primary"><i class="fas fa-plus"></i> เพิ่มข้อมูล</a>
-        </div>
-    </div>
     {{-- <div class="row p-3">
         <div class="col-md col-xs-6 border-right">
         <h3 class="bold no-mtop">{{ $status_count['1']??0 }}</h3>
@@ -47,14 +48,14 @@
             <p style="color:#84c529" class="text-gray font-medium no-mbot">Re-Open</p>
         </div>
     </div> --}}
-    <div class="row px-3">
+    <div class="row mb-3">
         @foreach (Helper::AppealStatus() as $key => $status)
         <div class="col-md">
             <x-card-appealstatus-box :type=$key>{{ isset($status_count[$key])?$status_count[$key]:0 }}</x-card-box>
         </div>
         @endforeach
     </div>
-    <div class="row px-3 form-group text-right mb-0">
+    <div class="row form-group text-right mb-0">
             <label for="staticEmail" class="col-sm-10 col-form-label">
                 สถานะใบคำร้อง
             </label>
@@ -62,7 +63,7 @@
                 {!! Form::select('filter_status', [''=>'ทั้งหมด','1'=>'เปิด','2'=>'อยู่ระหว่างดำเนินการ','3'=>'ปิด','4'=>'ส่งต่อหน่วยงานเจ้าของข้อมูล','5'=>'ปฏิเสธ','6'=>'ส่งต่อ สคส','7'=>'Re-Open'],request()->get('status'), array('class' => 'form-control form-control-sm','id'=>'filter_status')) !!}
             </div>
     </div>
-    <div class="row p-3">
+    <div class="row">
         <div class="col-12">
             <div class="card shadow bg-body rounded">
                 <table class="table strip table-hover">

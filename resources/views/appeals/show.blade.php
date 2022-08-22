@@ -1,19 +1,33 @@
 @extends('layouts.app')
 
+@section('content-header')
+<div class="col-sm-6">
+    <h1>
+        รายละเอียดใบคำร้องหมายเลข #{{ $appeal->appeal_uuid }}
+    </h1>
+</div>
+<div class="col-6 text-right">
+    <a href="{{ route('appeals.edit',$appeal->appeal_id) }}" class="btn btn-danger btn-sm">
+        <i class="fas fa-cogs"></i> แก้ไข</a>
+    <a href="{{ route('appeals.index') }}" class="btn btn-default btn-sm">
+        <i class="fas fa-chevron-circle-left"></i> ย้อนกลับ</a>
+</div>
+@endsection
+
 @section('content')
-<div class="container">
+<div class="">
     @if ($message = Session::get('success'))
         <div class="alert alert-success mt-3">
             <p>{{ $message }}</p>
         </div>
     @endif
-    <div class="row my-4 align-items-center">
-        <div class="col">
+    <div class="row align-items-center">
+        <div class="col-12">
             <div class="card shadow bg-body rounded">
                 <div class="card-header text-white bg-light">
                     <div class="row">
                         <div class="col-6 align-middle"><strong class="align-middle"><i class="fa-solid fa-file-lines"></i> รายละเอียดใบคำร้องหมายเลข #{{ $appeal->appeal_uuid }} </strong></div>
-                        <div class="col-6 text-right">
+                        <div class="col-6 text-right d-none">
                             <a href="{{ route('appeals.edit',$appeal->appeal_id) }}" class="btn btn-danger btn-xs">
                                 <i class="fas fa-cogs"></i></a>
                             <a href="{{ route('appeals.index') }}" class="btn btn-danger btn-xs">

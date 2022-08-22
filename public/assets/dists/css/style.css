@@ -1,6 +1,6 @@
 a, body, input, label, li, p, span, table, td, th {
 	font-family: 'Prompt', sans-serif;
-	color: #595555;
+	/* color: #595555; */
 }
 
 /*Utility class*/
@@ -15,8 +15,30 @@ a, body, input, label, li, p, span, table, td, th {
 }
 
 /*Override component*/
+.brand-link .brand-image {
+    float: left;
+    line-height: .8;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+    margin-top: -3px;
+    max-height: 33px;
+    width: auto;
+}
+
 a>.info-box:hover {
 	background-color: rgb(245, 245, 245);
+}
+
+[class*=sidebar-dark-] .sidebar a {
+    color: #FFF;
+}
+
+.sidebar-dark-primary .nav-sidebar>.nav-item>.nav-link.active, .sidebar-light-primary .nav-sidebar>.nav-item>.nav-link.active {
+    background-color: #dc3545;
+    color: #fff;
+}
+.nav-pills .nav-link:not(.active):hover {
+    color: #dc3545;
 }
 
 .dropzone {

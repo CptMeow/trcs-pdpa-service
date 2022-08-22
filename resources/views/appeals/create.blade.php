@@ -1,17 +1,24 @@
 @extends('layouts.app')
 
+@section('content-header')
+<div class="col-sm-6">
+
+</div>
+<div class="col-6 pr-3 text-right">
+    <a href="{{ route('appeals.index') }}" class="btn btn-danger" title="ย้อนกลับ">
+        <i class="fas fa-chevron-circle-left"></i> ย้อนกลับ</a>
+</div>
+@endsection
+
 @section('content')
-<div class="container">
-    <div class="row my-4 align-items-center">
+<div class="px-2 pb-4">
+    <div class="row align-items-center">
         <div class="col">
             <div class="card shadow bg-body rounded">
                 <div class="card-header text-white bg-light">
                     <div class="row">
                         <div class="col-6 align-middle"><strong class="align-middle">บันทึกข้อมูลการร้องเรียนการใช้งานข้อมูลส่วนบุคคล</strong></div>
-                        <div class="col-6 text-right">
-                            <a href="{{ route('appeals.index') }}" class="btn btn-danger btn-xs " title="ย้อนกลับ">
-                                <i class="fas fa-chevron-circle-left"></i></a>
-                        </div>
+
                     </div>
                 </div>
                 <form id="appreal_form" action="{{route('appeals.store')}}" method="post" autocomplete="off" class="needs-validation" enctype="multipart/form-data">
