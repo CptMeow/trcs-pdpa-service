@@ -79,55 +79,55 @@
                 </p>
               </a>
             </li>
-            @can('appeal-list')
-            <li class="nav-item">
-              <a href="{{ route('appeals.index') }}" class="nav-link {{ request()->routeIs('appeals.index') ? 'active' : '' }}">
-                <i class="nav-icon fas fa-list"></i>
-                <p>
-                  ใบคำร้อง
-                </p>
-              </a>
-            </li>
-            @endcan
+            @canany(['appeal-list', 'appeal-manage', 'appeal-list-all'])
+              <li class="nav-item">
+                <a href="{{ route('appeals.index') }}" class="nav-link {{ request()->routeIs('appeals.index') ? 'active' : '' }}">
+                  <i class="nav-icon fas fa-list"></i>
+                  <p>
+                    ใบคำร้อง
+                  </p>
+                </a>
+              </li>
+            @endcanany
             @hasanyrole('Staff|Admin')
-            <li class="nav-item">
-              <a href="{{ route('report.sitecheck') }}" class="nav-link ">
-                <i class="nav-icon fas fa-check"></i>
-                <p>
-                  รายงานตรวจสอบ PDPA
-                </p>
-              </a>
-            </li>
+              <li class="nav-item">
+                <a href="{{ route('report.sitecheck') }}" class="nav-link ">
+                  <i class="nav-icon fas fa-check"></i>
+                  <p>
+                    รายงานตรวจสอบ PDPA
+                  </p>
+                </a>
+              </li>
             @endhasanyrole
 
             @hasrole('Admin')
-            <li class="nav-item">
-              <a href="{{ route('report.sitecheck') }}" class="nav-link ">
-                <i class="nav-icon fas fa-tools"></i>
-                <p>
-                  จัดการระบบ
-                  <i class="right fas fa-angle-left"></i>
-                </p>
-              </a>
-              <ul class="nav nav-treeview">
-                <li>
-                  <a class="nav-link" href="{{ route('roles.index') }}">
-                    <p>
-                      <i class="fas fa-users-cog nav-icon"></i>
-                      จัดการกลุ่มผู้ใช้งาน
-                    </p>
-                  </a>
-                </li>
-                <li>
-                  <a class="nav-link" href="{{ route('users.index') }}">
-                    <p>
-                      <i class="fas fa-user-cog nav-icon"></i>
-                      จัดการผู้ใช้งาน
-                    </p>
-                  </a>
-                </li>
-              </ul>
-            </li>
+              <li class="nav-item">
+                <a href="{{ route('report.sitecheck') }}" class="nav-link ">
+                  <i class="nav-icon fas fa-tools"></i>
+                  <p>
+                    จัดการระบบ
+                    <i class="right fas fa-angle-left"></i>
+                  </p>
+                </a>
+                <ul class="nav nav-treeview">
+                  <li>
+                    <a class="nav-link" href="{{ route('roles.index') }}">
+                      <p>
+                        <i class="fas fa-users-cog nav-icon"></i>
+                        จัดการกลุ่มผู้ใช้งาน
+                      </p>
+                    </a>
+                  </li>
+                  <li>
+                    <a class="nav-link" href="{{ route('users.index') }}">
+                      <p>
+                        <i class="fas fa-user-cog nav-icon"></i>
+                        จัดการผู้ใช้งาน
+                      </p>
+                    </a>
+                  </li>
+                </ul>
+              </li>
             @endhasrole
           </ul>
         </nav>
@@ -139,18 +139,18 @@
         <div class="container-fluid">
           <div class="row mb-2">
             @section('content-header')
-            <div class="col-sm-6">
-              <h1>
+              <div class="col-sm-6">
+                <h1>
 
-              </h1>
-            </div>
-            <div class="col-sm-6 d-none">
-              <ol class="breadcrumb float-sm-right">
-                <li class="breadcrumb-item"><a href="#">Home</a></li>
-                <li class="breadcrumb-item"><a href="#">Layout</a></li>
-                <li class="breadcrumb-item active">Fixed Navbar Layout</li>
-              </ol>
-            </div>
+                </h1>
+              </div>
+              <div class="col-sm-6 d-none">
+                <ol class="breadcrumb float-sm-right">
+                  <li class="breadcrumb-item"><a href="#">Home</a></li>
+                  <li class="breadcrumb-item"><a href="#">Layout</a></li>
+                  <li class="breadcrumb-item active">Fixed Navbar Layout</li>
+                </ol>
+              </div>
             @show
           </div>
         </div>

@@ -17,7 +17,7 @@
             <form method="POST" action="{{ route('login') }}" id="login-form" class="form">
                 @csrf
                 <div class="input-group mb-3">
-                    <input type="email" name="email" id="email" class="form-control" placeholder="Email" value="{{old('email')}}" required>
+                    <input type="email" name="email" id="email" class="form-control" placeholder="Email" value="{{old('email')}}" required autocomplete="off">
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-envelope"></span>
@@ -45,6 +45,7 @@
 
     </div>
     <div class="col-12 mt-2 text-center">
+        
         <a class="btn bg-info btn-app" href="https://it.redcross.or.th/pdpaforthairedcross/" target="_blank" >
             <i class="fas fa-book"></i> เอกสาร PDPA
         </a>

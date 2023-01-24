@@ -39,6 +39,12 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('appeals', AppealController::class);
 });
 
+//Public Access
+Route::name('admin.')->prefix('public')->group(function () {
+    Route::resource('appeals', PublicAppealController::class);
+});
+Route::resource('pub', AppealController::class);
+
 // report 
 Route::prefix('report')->group(function () {
     Route::get('sitecheck', [PDPASiteCheckController::class, 'ReportSiteCheck'])->name('report.sitecheck');
