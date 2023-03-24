@@ -1,0 +1,39 @@
+@use "sass:map";
+@use "@core-scss/base/mixins";
+@use "@configured-variables" as variables;
+
+$header: ".layout-navbar";
+
+@if variables.$layout-vertical-nav-navbar-is-contained {
+  $header: ".layout-navbar .navbar-content-container";
+}
+
+.skin--bordered {
+  // vertical nav
+  .layout-nav-type-vertical {
+    // ℹ️ We have special case in sneat + bordered layout where we don't want shadow when vertical nav is mini & hovered due to floating header action buttons
+    .layout-vertical-nav {
+      box-shadow: none !important;
+
+      // Only add border if vertical nav isn't in overlay mode
+      &:not(.overlay-nav) .nav-header::after {
+        border: thin solid rgba(var(--v-border-color), var(--v-border-opacity));
+
+        // ℹ️ This will create perfect half circle. Using border-inline-end wasn't creating perfect circle
+        clip-path: circle(71% at 0% 50%);
+      }
+    }
+  }
+
+  // Navbar
+
+  // -- Vertical
+  @if variables.$layout-vertical-nav-navbar-is-contained {
+    @include mixins.bordered-skin(".layout-nav-type-vertical #{$header}");
+    .layout-nav-type-vertical.window-scrolled #{$header} {
+      border-block-start: 1px solid rgba(var(--v-border-color), var(--v-border-opacity)) !important;
+    }
+  } @else {
+    @include mixins.bordered-skin(".layout-nav-type-vertical #{$header}", "border-bottom");
+  }
+}

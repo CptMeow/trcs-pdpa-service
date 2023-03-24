@@ -1,0 +1,28 @@
+@use "vuetify/lib/styles/tools/elevation" as elevation;
+
+// Horizontal nav item styles (including nested)
+%horizontal-nav-item {
+  padding-block: 0.5rem;
+  padding-inline: 1rem;
+  padding-inline-end: 0.75rem;
+}
+
+// Active styles for sub nav link
+%horizontal-nav-sub-nav-link-active {
+  background: transparent;
+  color: rgba(var(--v-theme-on-surface), var(--v-high-emphasis-opacity));
+  font-weight: 600;
+
+  .nav-item-icon {
+    color: rgb(var(--v-theme-primary)) !important;
+  }
+}
+
+%horizontal-nav-popper-content {
+  @include elevation.elevation(8);
+}
+
+// Horizontal nav item title
+%horizontal-nav-item-title {
+  margin-inline-end: 0.4rem;
+}

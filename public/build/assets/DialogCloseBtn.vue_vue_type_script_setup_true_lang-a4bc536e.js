@@ -1,0 +1,1 @@
+import{d as c,r as t,o as s,b as a,w as i,p as l,C as r}from"./main-51fa4cdd.js";const m=c({__name:"DialogCloseBtn",props:{icon:{default:"bx-x"},iconSize:{default:"24"}},setup(n){const o=n;return(p,_)=>{const e=t("IconBtn");return s(),a(e,{class:"v-dialog-close-btn"},{default:i(()=>[l(r,{icon:o.icon,size:o.iconSize},null,8,["icon","size"])]),_:1})}}});export{m as _};

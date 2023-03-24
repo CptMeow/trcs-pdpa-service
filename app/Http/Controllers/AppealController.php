@@ -13,10 +13,11 @@ class AppealController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('permission:appeal-list|appeal-create|appeal-edit|appeal-delete|appeal-list-all|appeal-list-all', ['only' => ['index', 'store']]);
+        $this->middleware('permission:appeal-list|appeal-create|appeal-edit|appeal-delete|appeal-list-all|appeal-manage', ['only' => ['index', 'store']]);
         $this->middleware('permission:appeal-create', ['only' => ['create', 'store']]);
         $this->middleware('permission:appeal-edit', ['only' => ['edit', 'update']]);
         $this->middleware('permission:appeal-delete', ['only' => ['destroy']]);
+        $this->middleware('permission:appeal-comment-create|appeal-manage', ['only' => ['commentCreate', 'commentStore']]);
     }
 
     //
@@ -56,12 +57,12 @@ class AppealController extends Controller
             $status_count[$val['appeal_status_id']] = $val['total'];
         }
 
-        return view('appeals.index', compact(['appeals', 'status_count']));
+        return view('app.appeals.index', compact(['appeals', 'status_count']));
     }
 
     public function create(Request $request)
     {
-        return view('appeals.create');
+        return view('app.appeals.create');
     }
 
     public function show(Appeal $appeal)
@@ -70,7 +71,7 @@ class AppealController extends Controller
         $attachments  = Attachment::where('appeal_id', $appeal->appeal_id)->get();
         $activities   = AppealActivity::where('appeal_id', $appeal->appeal_id)->OrderBy('created_at', 'desc')->get();
 
-        return view('appeals.show', compact(['appeal', 'data_subject', 'attachments', 'activities']));
+        return view('app.appeals.show', compact(['appeal', 'data_subject', 'attachments', 'activities']));
     }
 
     public function store(Request $request)
@@ -169,10 +170,10 @@ class AppealController extends Controller
                 }
             }
 
-            return redirect()->route('appeals.index')
+            return redirect()->route('app.appeals.index')
                 ->with('success', 'Appeal created successfully');
         } else {
-            return redirect()->route('appeals.index')
+            return redirect()->route('app.appeals.index')
                 ->with('error', 'Appeal error');
         }
 
@@ -218,21 +219,49 @@ class AppealController extends Controller
         $appeal->appeal_status_id = $request->input('appeal_status');
         $appeal->save();
 
-        return redirect()->route('appeals.show', $appeal->appeal_id)
+        return redirect()->route('app.appeals.show', $appeal->appeal_id)
             ->with('success', 'Updated status successfully');
+    }
+
+    public function commentCreate(Request $request, Appeal $appeal)
+    {
+        return view('app.appeals.create-comment', compact(['appeal']));
+    }
+    public function commentStore(Request $request, Appeal $appeal)
+    {
+        # code...
+
+        //dd(AppealActivity::all());
+        // $_activity['status']['old'] = $appeal->appeal_status_id;
+        // $_activity['status']['new'] = $request->input('appeal_status');
+
+        $_activity['comment'] = $request->input('activity_comment');
+
+        $_json = json_encode($_activity);
+
+        $AppealActivity = AppealActivity::create([
+            'appeal_activities_event_name' => 'add_comment',
+            'appeal_id'                    => $appeal->appeal_id,
+            'user_id'                      => Auth::id(),
+            'appeal_activities_data'       => $_json,
+        ]);
+        $AppealActivity->save();
+
+        return redirect()->route('app.appeals.show', $appeal->appeal_id)
+            ->with('success', 'Create comment successfully');
     }
 
     public function edit(Appeal $appeal)
     {
         # code...
-        return view('appeals.edit', compact(['appeal']));
+        return view('app.appeals.edit', compact(['appeal']));
     }
 
     public function destroy(Appeal $appeal)
     {
         $appeal->delete();
 
-        return redirect()->route('appeals.index')
+        return redirect()->route('app.appeals.index')
             ->with('success', 'Appeal deleted successfully');
     }
 }
