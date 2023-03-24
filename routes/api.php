@@ -1,12 +1,10 @@
 <?php
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Route;
-
 use App\Http\Controllers\Api\ChartController;
-
 use App\Models\Appeal;
 use App\Models\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,7 +15,7 @@ use App\Models\User;
 | routes are loaded by the RouteServiceProvider within a group which
 | is assigned the "api" middleware group. Enjoy building your API!
 |
-*/
+ */
 
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //     return $request->user();
@@ -25,8 +23,6 @@ use App\Models\User;
 Route::middleware('auth')->get('/user', function (Request $request) {
     return $request->user();
 });
-    
-
 
 Route::get('/test', function (Request $request) {
     return $request->user();

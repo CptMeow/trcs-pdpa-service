@@ -1,7 +1,7 @@
 {
-    "name": "laravel/laravel",
+    "name": "cptmeow/trcs-pdpa-service",
     "type": "project",
-    "description": "The Laravel Framework.",
+    "description": "TRCS-PDPA-SERVICE",
     "keywords": [
         "framework",
         "laravel"

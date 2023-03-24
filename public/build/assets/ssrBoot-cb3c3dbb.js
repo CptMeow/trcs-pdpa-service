@@ -1,1 +1,0 @@
-import{k as t,af as e,B as s,bH as n}from"./main-51fa4cdd.js";function i(){const o=t(!1);return e(()=>{window.requestAnimationFrame(()=>{o.value=!0})}),{ssrBootStyles:s(()=>o.value?void 0:{transition:"none !important"}),isBooted:n(o)}}export{i as u};
